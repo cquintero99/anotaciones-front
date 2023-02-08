@@ -25,7 +25,7 @@ function cargarMateria(materia) {
         
     body += `
     <div class="col-md-4 col-sm-6 content-card">
-    <div class="card-big-shadow">
+    <div class="card-big-shadow" style="max-width: 540px;">
   
         <div class="card card-just-text" data-background="color" data-color="${color[cargarColor()]}" data-radius="none">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">

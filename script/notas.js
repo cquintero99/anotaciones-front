@@ -21,7 +21,7 @@ async function listaNotas(id) {
     if(notas.length===0){
       body=`<h1>No Hay notas</h1>`
     }
-    for (let i = 0; i < notas.length; i++) {
+    for (let i =notas.length-1; i >=0 ; i--) {
       const meses=["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"]
       const colorFecha=["primary", "success","info", "warning", "danger",  "dark",  "base", ]
       var fecha=new Date(notas[i].fecha_entrega)
@@ -29,45 +29,49 @@ async function listaNotas(id) {
       let mes=Number(fecha.getUTCMonth())
       body += `
           
-          <div class="col-lg-4">
+          <div class="col">
           
-              <div class="card card-margin style="width: 18rem;"">
+             <div class="card card-margin " style="max-width: 640px;">
              
-              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button type="button" class="btn-close" aria-label="Close" onclick="eliminarNota(${notas[i].id})"></button>
-              </div>
-                  <div class="card-header no-border">
-                  <h5 class="card-title">${notas[i].categoria.nombre}</h5>
-                  </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn-close" aria-label="Close" onclick="eliminarNota(${notas[i].id})"></button>
+                        </div>
+                        <div class="card-header no-border">
+                        <h5 class="card-title">${notas[i].categoria.nombre}</h5>
+                        </div>
                  
                   <div class="card-body pt-0">
                       <div class="widget-49">
-                          <div class="widget-49-title-wrapper">
-                              <div class="widget-49-date-${colorFecha[cargarColorFecha()]}">
-                                  <span class="widget-49-date-day">${dia}</span>
-                                  <span class="widget-49-date-month">${meses[mes]}</span>
+                              <div class="widget-49-title-wrapper border-bottom border-dark">
+                                      <div class="widget-49-date-${colorFecha[cargarColorFecha()]}">
+                                          <span class="widget-49-date-day">${dia}</span>
+                                          <span class="widget-49-date-month">${meses[mes]}</span>
+                                      </div>
+                                        <div class="widget-49-meeting-info">
+                                        <span class="widget-49-meeting-time">TITULO</span>
+                                            <h3><span class="widget-49-pro-title">${notas[i].titulo}</span></h3>
+                                            
+                                        </div>
                               </div>
-                              <div class="widget-49-meeting-info">
-                              <span class="widget-49-meeting-time">TITULO</span>
-                                  <h3><span class="widget-49-pro-title">${notas[i].titulo}</span></h3>
-                                  
-                              </div>
-                          </div>
 
                            
-                          <ol class="widget-49-meeting-points">
-                              <li class="widget-49-meeting-item"><span>DESCRIPCION</span></li>
-                              <p class="fw-semibold fs-6 ">${notas[i].descripcion}</p>
-                              <li class="widget-49-meeting-item" ><span >ESTADO:  ${notas[i].estado} </span></li>
-                              <a href="#" class="fw-semibold fs-6 " onclick="cambiarEstado(${notas[i].id})">¿ACTUALIZAR ESTADO?</a>
-                              <li class="widget-49-meeting-item"><span>Fecha de registro  ${notas[i].fecha_registro}</span></li>
-                              
-                          </ol>
-                          <div class="widget-49-meeting-action">
-                              <a href="#" class="btn btn-sm btn-flash-border-primary"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="cargarCategorias()" >Editar</a>
-                          </div>
+                            <ol class="widget-49-meeting-points">
+                                <li class="widget-49-meeting-item "><span>DESCRIPCION</span></li>
+                                <p class="fw-semibold fs-6 text-center">${notas[i].descripcion}</p>
+                                <li class="widget-49-meeting-item" ><span >ESTADO:  ${notas[i].estado} </span></li>
+                                <a href="#" class="fw-semibold fs-6 text-center" onclick="cambiarEstado(${notas[i].id})">Actualizar el estado?</a>
+                                
+                                <li class="widget-49-meeting-item"><span>ARCHIVOS</span></li>
+                                
+                            </ol>
+                            <div class="widget-49-meeting-info text-center">
+                                        <span class="widget-49-meeting-time text-muted">Fecha de registro  ${notas[i].fecha_registro}</span>
+                            </div>
+                            <div class="widget-49-meeting-action">
+                                <a href="#" class="btn btn-sm btn-flash-border-primary"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="cargarCategorias()" >Editar</a>
+                            </div>
                       </div>
-                  </div>
+                    </div>
              
            </div>
            </div>
