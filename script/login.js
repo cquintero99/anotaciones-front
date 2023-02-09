@@ -7,12 +7,12 @@ function cargarLogin(){
             <h4 class="company_title"></h4>
         </div>
         <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
-            <div class="container-fluid">
-                <div class="row">
-                    <h2>Log In</h2>
+            <div class="container-fluid" id="formulario">
+                <div class="row p-3">
+                    <h2>Iniciar Sesion</h2>
                 </div>
                 <div class="row">
-                    <form control="" class="form-group">
+                    <form control="" class="form-group" >
                         <div class="row">
                             <input type="text" name="username" id="username" class="form__input" placeholder="Username">
                         </div>
@@ -20,25 +20,92 @@ function cargarLogin(){
                             <!-- <span class="fa fa-lock"></span> -->
                             <input type="password" name="password" id="password" class="form__input" placeholder="Password">
                         </div>
-                        <div class="row">
-                            <input type="checkbox" name="remember_me" id="remember_me" class="">
-                            <label for="remember_me">Remember Me!</label>
-                        </div>
+                       
                         <div class="row text-center">
                             <input type="submit" value="Submit" class="btnL">
                         </div>
                     </form>
                 </div>
                 <div class="row">
-                    <p>Don't have an account? <a href="#">Register Here</a></p>
+                    <p>No esta registrado? <a href="#" onclick="formularioRegistro()">Crear Cuenta</a></p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- Footer -->
 <div class="container-fluid text-center footer">
-    Coded with &hearts; by <a href="https://bit.ly/yinkaenoch">Yinka.</a></p>
+ <a href="#">MY NOTEBOOK</a></p>
 </div>`
 document.getElementById("login").innerHTML=body;
+}
+
+function formularioRegistro(){
+
+
+    body=
+    `                   <div class="row p-3">
+                        <h2>Crear Cuenta</h2>
+                       </div>
+                      <div class="row">
+                       <form control="" class="form-group" >
+                        <div class="row">
+                            <input type="text" name="nombre" id="nombre" class="form__input" placeholder="Nombre">
+                        </div>
+                        <div class="row">
+                            <input type="text" name="apellido" id="apellido" class="form__input" placeholder="Apellido">
+                        </div>
+                        
+                        <div class="row">
+                        <label for="remember_me">Fecha Nacimiento</label>
+                        <input type="date" name="fechaNacimiento" id="fechaNacimiento" class="form__input " >
+                        </div>
+                        <div class="row">
+                            <input type="text" name="correo" id="correo" class="form__input" placeholder="Correo">
+                        </div>
+                        
+                        <div class="row"
+                            <span class="fa fa-lock"></span> 
+                            <input type="password" name="password" id="password" class="form__input" placeholder="Password">
+                        </div>
+                        <div class="row">
+                            <input type="checkbox" name="remember_me" id="remember_me" class="">
+                            <label for="remember_me">Acepto terminos y condiciones</label>
+                        </div>
+                        <div class="row ">
+                            <input type="submit" value="REGISTRAR" class="btnL btn-lg">
+                            </div>
+                            </form>
+                            </div>
+                            <div class="row">
+                                <p>Ya tengo una cuenta! <a href="#" onclick="formularioLogin()">Iniciar secion</a></p>
+                            </div>
+    `
+    document.getElementById("formulario").innerHTML=body
+}
+
+function formularioLogin(){
+    body=`<div class="row p-3">
+    <h2>Iniciar Secion</h2>
+</div>
+<div class="row">
+    <form control="" class="form-group" >
+        <div class="row">
+            <input type="text" name="username" id="username" class="form__input" placeholder="Username">
+        </div>
+        <div class="row">
+            <!-- <span class="fa fa-lock"></span> -->
+            <input type="password" name="password" id="password" class="form__input" placeholder="Password">
+        </div>
+        
+        <div class="row text-center">
+            <input type="submit" value="Submit" class="btnL">
+        </div>
+    </form>
+</div>
+<div class="row">
+    <p>No estas registrado? <a href="#" onclick="formularioRegistro()">Crear Cuenta</a></p>
+</div>`
+
+document.getElementById("formulario").innerHTML=body
+
 }

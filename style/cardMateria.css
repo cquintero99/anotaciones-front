@@ -133,3 +133,13 @@ a:hover, a:focus {
 .card[data-color="orange"] .category {
     color: #e95e37;
 }
+
+.card[data-color="green-black"] {
+    background: #a38c06;
+}
+.card[data-color="green-black"] .description {
+    color: #dad603ef;
+}
+.card[data-color="green-black"] .category {
+    color: #d8a603;
+}

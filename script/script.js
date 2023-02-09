@@ -1,9 +1,14 @@
 
 async function listaMateria() {
+   // history.pushState(null, "", "materias/index.html");
+   // location.replace('https://code.tutsplus.com');
+   var stateObj = { foo: "materias" };
+history.pushState(stateObj, "page 2", "materias.html");
     document.getElementById("resumenMateria").innerHTML=""
     document.getElementById("rootNotas").innerHTML=""
     document.getElementById("login").innerHTML=""
-  const result = await fetch("http://localhost:8088/materia")
+    localStorage.setItem("idMateria","")
+  const result = await fetch("http://localhost:8088/usuarios/1/all")
     .then((data) => data.json())
     .then((res) => cargarMateria(res))
     .catch((err) => console.log(err));
@@ -15,29 +20,75 @@ function cargarColor(){
     return count++;
 }
 
-function cargarMateria(materia) {
+function cargarMateria(data) {
   let body = "";
   const color=["orange","purple","brown","yellow","green","blue"]
+  let idUsuario=1
+  let rol="Invitado"
+  for (let i = 0; i < data.length; i++) {
 
-  for (let i = 0; i < materia.length; i++) {
     const n=0
+    if(idUsuario===data[i].usuario_id){
+      rol="Creador"
+    }else{
+      rol="Invitado"
+    }
+    let nombre=data[i].materia.nombre;
+    if(nombre.length>=15){
+      nombre=nombre.substr(0,12)+"..."
+    }
+    body += ` 
     
-        
-    body += `
-    <div class="col-md-4 col-sm-6 content-card">
+<div class="col-md-4 col-sm-6 content-card">
+    
     <div class="card-big-shadow" style="max-width: 540px;">
-  
-        <div class="card card-just-text" data-background="color" data-color="${color[cargarColor()]}" data-radius="none">
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="button" class="btn-close" aria-label="Close" onclick="eliminarMateria(${materia[i].id})"></button>
-            </div>   
-        <div class="content">
-            
-                <h4 class="title"><a href="#" onclick="listaNotas(${materia[i].id})"> ${materia[i].nombre}</a></h4>
-                <h6 class="category">${materia[i].codigo} - ${materia[i].grupo}</h6>
-                <p class="description">Docente: ${materia[i].profesor}</p>
-            </div>
+        
+         <div class="card card-just-text" data-background="color" data-color="${color[cargarColor()]}" data-radius="none">
+           
+                    
+                                  <div class="content">
+                                          <p><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                                          <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                                        </svg></p>
+                                          <h4 class="title"><a href="#" onclick="listaNotas(${data[i].materia.id})"> ${nombre}</a></h4>
+                                          <h6 class="category">${data[i].materia.codigo} - ${data[i].materia.grupo}</h6>
+                                          <p class="description">Docente: </p>
+                                          <p class="description">${data[i].materia.profesor}</p>
+                                          <p>${rol}</p>
+                                          
+                                  </div>
+                                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                  <div class="floating-container">
+                                                    <div class="floating-button"><i class="material-icons">settings</i></div>
+                                                <div class="element-container">
+                                                
+                                                    <a href="#" onclick="eliminarMateria(${data[i].materia.id})"> <span class="float-element tooltip-left" >
+                                                      <i class="material-icons">delete
+                                                      </i></a>
+                                                    </span>
+              
+                                                    
+                                                      <span class="float-element" onclick="modalMateria(${data[i].materia.id})" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+                                                      
+                                                      <i class="material-icons">autorenew
+                                                    </i>
+                                                    </span>
+              
+                                                      <span class="float-element">
+                                                      <i class="material-icons">group</i>
+                                                    </span>
+                                                    
+                                                </div>
+                                        </div>    
+              
+                                    
+                                  
+                                  
+                                  </div>  
+                                  
+           
         </div> 
+        
     </div>
 </div>
 
@@ -51,88 +102,22 @@ function cargarMateria(materia) {
 }
 
 
-async function saveMateria(){
-
-    let nombre=document.getElementById("nombreMateria").value
-    let profesor=document.getElementById("nombreMateriaProfesor").value
-    let codigo=document.getElementById("codigo").value;
-    let grupo=document.getElementById("selectGrupo");
-    let textGrupo=grupo.options[grupo.selectedIndex].text
-    let fecha = new Date()
-    const materia={
-        usuario_id:1,
-        nombre,
-        profesor,
-        codigo,
-        grupo: textGrupo,
-        fecha_registro:fecha
-    }
-    const resultSave=await fetch("http://localhost:8088/materia",{
-        method :'POST',
-        body:JSON.stringify(materia),
-        headers:{
-            "Content-type":"Application/json"
-        }
-    })
-    .then(response=>response.json())
-    .then(data=>{
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Your work has been saved',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          setTimeout(recargar,1500)
-    })
-    .catch(error=>console.log(error+"no se registro materia"))
-   // console.log(materia)
 
 
 
-}
 
-function eliminarMateria(id){
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-          confirmButton: 'btn btn-success',
-          cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-      })
-      
-      swalWithBootstrapButtons.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
-        } else if (
-          /* Read more about handling dismissals below */
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-          swalWithBootstrapButtons.fire(
-            'Cancelled',
-            'Your imaginary file is safe :)',
-            'error'
-          )
-        }
-      })
-}
+
 
 function recargar(){
-    location.reload()
+    listaMateria()
+    
 }
-
+$('.botonF1').hover(function(){
+  $('.btnB').addClass('animacionVer');
+})
+$('.contenedor').mouseleave(function(){
+  $('.btnB').removeClass('animacionVer');
+})
 
 
 

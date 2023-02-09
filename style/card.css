@@ -10,9 +10,7 @@
     -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
 }
 .card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
+    
     min-width: 0;
     word-wrap: break-word;
     background-color: #ffffff;
@@ -27,8 +25,7 @@
 .card .card-header {
     background: none;
     padding: 0 0.9375rem;
-    font-weight: 500;
-    display: flex;
+    
     align-items: center;
     min-height: 50px;
 }
@@ -290,7 +287,7 @@
 
 .widget-49 .widget-49-meeting-points .widget-49-meeting-item {
   display: list-item;
-  color: #727686;
+  color: #070000;
 }
 
 .widget-49 .widget-49-meeting-points .widget-49-meeting-item span {
