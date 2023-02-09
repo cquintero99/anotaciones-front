@@ -2,13 +2,19 @@
 async function listaMateria() {
    // history.pushState(null, "", "materias/index.html");
    // location.replace('https://code.tutsplus.com');
-   var stateObj = { foo: "materias" };
-history.pushState(stateObj, "page 2", "materias.html");
+ //  var stateObj = { foo: "materias" };
+//history.pushState(stateObj, "page 2", "materias.html");
     document.getElementById("resumenMateria").innerHTML=""
     document.getElementById("rootNotas").innerHTML=""
     document.getElementById("login").innerHTML=""
     localStorage.setItem("idMateria","")
-  const result = await fetch("http://localhost:8088/usuarios/1/all")
+    let token=localStorage.getItem("token")
+    let id=JSON.parse(localStorage.getItem("data")).id
+  const result = await fetch("http://localhost:8088/usuarios/"+id+"/all",{
+    headers:{
+      'Authorization': 'Bearer ' + token
+  }
+  })
     .then((data) => data.json())
     .then((res) => cargarMateria(res))
     .catch((err) => console.log(err));

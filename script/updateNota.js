@@ -1,6 +1,11 @@
 async function modalNota(id){
     //cargarCategorias()
-    const result=await fetch('http://localhost:8088/anotacion/'+id)
+    let token=localStorage.getItem("token")
+    const result=await fetch('http://localhost:8088/anotacion/'+id,{
+        headers:{
+            "Authorization":"Bearer "+token
+        }
+    })
     .then(res=>res.json())
     .then(data=>{cargarNotaModal(data)
         cargarCategoriaNota(data.categoria)
@@ -61,12 +66,13 @@ async function updateNota(id){
         fecha_registro,
         estado
     }
-    
+    let token =localStorage.getItem("token")
     const resulUpdateNota= await fetch("http://localhost:8088/anotacion/"+id,{
         method:'PUT',
         body:JSON.stringify(anotacion),
         headers:{
-            "Content-type":"Application/json"
+            "Content-type":"Application/json",
+            "Authorization":"Bearer "+token
         }
     })
     .then(response=>response.json())

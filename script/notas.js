@@ -1,8 +1,13 @@
 async function listaNotas(id) {
     localStorage.setItem("idMateria",id)
     resumenMateria(id)
+    let token=localStorage.getItem("token")
     
-    const allNotas = await fetch("http://localhost:8088/materia/" + id + "/anotaciones")
+    const allNotas = await fetch("http://localhost:8088/materia/" + id + "/anotaciones",{
+      headers:{
+        'Authorization': 'Bearer ' + token
+    }
+    })
       .then((response) => response.json())
       .then((notas) => {cargarNotas(notas)
         
@@ -23,7 +28,29 @@ function cargarColorNotas(){
   function cargarNotas(notas) {
     let body = "";
     if(notas.length===0){
-      body=`<h1>No Hay notas</h1>`
+      body=`<div class="col align-self-center p-5">
+      <div class="cardR  l-bg-orange" style="max-width: 1200px;">
+          <div class="card-statistic-3 p-4">
+              <div class="card-icon card-icon-large"></div>
+              <div class="mb-4">
+                  <h5 class="card-title mb-0">Vacio</h5>
+              </div>
+              <div class="row align-items-center mb-2 d-flex">
+                  <div class="col-8">
+                      <h2 class="d-flex align-items-center mb-0">
+                      No hay notas ... 
+                      </h2>
+                  </div>
+                  <div class="col-4 text-right">
+                      <span><i class="material-icons">person_add</i></span>
+                  </div>
+              </div>
+              <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                  <div class="progress-bar l-bg-green" role="progressbar" data-width="0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"></div>
+              </div>
+          </div>
+      </div>
+  </div>`
 
       
     }
@@ -132,11 +159,13 @@ function cargarColorNotas(){
         fecha_registro,
         estado
     }
+    let token=localStorage.getItem("token")
     const resultNota=await fetch('http://localhost:8088/anotacion',{
         method:'POST',
         body:JSON.stringify(anotacion),
         headers:{
-            "Content-type":"Application/json"
+            "Content-type":"Application/json",
+            "Authorization":"Bearer "+token
 
         }
     })

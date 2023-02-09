@@ -6,9 +6,10 @@
     let grupo=document.getElementById("selectGrupo");
     let textGrupo=grupo.options[grupo.selectedIndex].text
     let fecha = new Date()
+    let id=JSON.parse(localStorage.getItem("data")).id
     const materia={
         //Obtener id Usuario del token
-        usuario_id:1,
+        usuario_id:id,
         nombre,
         profesor,
         codigo,
@@ -22,17 +23,20 @@
 }
 
 async function registroMateria(materia){
+    let token=localStorage.getItem("token")
     const resultSave=await fetch("http://localhost:8088/materia",{
         method :'POST',
         body:JSON.stringify(materia),
         headers:{
-            "Content-type":"Application/json"
+            "Content-type":"Application/json",
+            "Authorization":"Bearer "+token
+            
         }
     })
     .then(response=>response.json())
     .then(data=>{
         //Obtener idUsuario del token 
-        let idUsuario=1
+        let idUsuario=JSON.parse(localStorage.getItem("data")).id
         agregoMateriaLista(data,idUsuario)
         
     })
@@ -47,12 +51,13 @@ async function agregoMateriaLista(materia,idUsuario){
         materia,
         usuario_id:idUsuario
     }
-
+    let token=localStorage.getItem("token")
     const result=await fetch('http://localhost:8088/user/materia',{
         method:'POST',
         body:JSON.stringify(usuarioMateria),
         headers:{
-            "Content-type":"Application/json"
+            "Content-type":"Application/json",
+            "Authorization":"Bearer "+token
         }
 
     })

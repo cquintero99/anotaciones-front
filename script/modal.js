@@ -20,7 +20,7 @@ function cargarModalMateria(){
        <label for="nombreMateria" class="form-label">Nombre</label>
        <input type="text" id="nombreMateria" class="form-control">
        <label for="codigo" class="form-label">Codigo</label>
-       <input type="text" id="codigo" class="form-control">
+       <input type="number" id="codigo" class="form-control">
        <label for="codigo" class="form-label">Grupo</label>
        <select class="form-select" aria-label="Default select example" id="selectGrupo">
            <option selected>Selecione un grupo</option>

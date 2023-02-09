@@ -34,10 +34,12 @@ function eliminarMateria(id){
 }
 
 async function deleteMateria(id){
+  let token=localStorage.getItem("token")
   const resultDelete= await fetch('http://localhost:8088/materia/'+id,{
     method:'DELETE',
     headers:{
-      "Content-type":"Application/json"
+      "Content-type":"Application/json",
+      "Authorization":"Bearer "+token
     }
   })
   .then(res=>res.json())

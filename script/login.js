@@ -22,7 +22,7 @@ function cargarLogin(){
                         </div>
                        
                         <div class="row text-center">
-                            <input type="submit" value="Submit" class="btnL">
+                            <input type="buttom" value="ENTRAR" class="btnL btn " onclick="iniciarSesion()">
                         </div>
                     </form>
                 </div>
@@ -98,7 +98,7 @@ function formularioLogin(){
         </div>
         
         <div class="row text-center">
-            <input type="submit" value="Submit" class="btnL">
+            <input type="buttom" value="Entrar" class="btnL" onclick="iniciarSesion()">
         </div>
     </form>
 </div>

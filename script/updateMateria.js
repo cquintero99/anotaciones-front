@@ -1,7 +1,11 @@
 async function modalMateria(id){
 
-
-    const result= await fetch("http://localhost:8088/materia/"+id)
+    let token=localStorage.getItem("token")
+    const result= await fetch("http://localhost:8088/materia/"+id,{
+        headers:{
+            "Authorization":"Bearer "+token
+        }
+    })
     .then(response=>response.json())
     .then(data=>cargarDatosMateria(data))
     .catch(err=>console.log(err))
@@ -34,7 +38,6 @@ async function updateMateria(id){
     let textGrupo=grupo.options[grupo.selectedIndex].text
     let fecha = new Date()
     const newMateria={
-        usuario_id:1,
         nombre,
         profesor,
         codigo,
@@ -42,17 +45,19 @@ async function updateMateria(id){
         fecha_registro:fecha
     }
 
+    let token=localStorage.getItem("token")
+
     const resultUpdate=await fetch('http://localhost:8088/materia/'+id,{
         method:'PUT',
         body:JSON.stringify(newMateria),
         headers:{
-            "Content-type":"Application/json"
+            "Content-type":"Application/json",
+            "Authorization":"Bearer "+token
         }
 
     })
     .then(response=>response.json())
     .then(data=>{
-        console.log(data)
          
 Swal.fire({
     
