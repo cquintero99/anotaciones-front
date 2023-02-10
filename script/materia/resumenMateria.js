@@ -68,6 +68,7 @@ async function resumenMateria(id){
         
   </div>
   
+  
   `
 
     document.getElementById("resumenMateria").innerHTML=body;

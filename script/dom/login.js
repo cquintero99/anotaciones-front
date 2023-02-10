@@ -14,7 +14,7 @@ function cargarLogin(){
                 <div class="row">
                     <form control="" class="form-group" >
                         <div class="row">
-                            <input type="text" name="username" id="username" class="form__input" placeholder="Username">
+                            <input type="text" name="username" id="username" class="form__input" placeholder="Correo">
                         </div>
                         <div class="row">
                             <!-- <span class="fa fa-lock"></span> -->
@@ -72,7 +72,7 @@ function formularioRegistro(){
                             <label for="remember_me">Acepto terminos y condiciones</label>
                         </div>
                         <div class="row ">
-                            <input type="submit" value="REGISTRAR" class="btnL btn-lg">
+                            <input type="buttom" value="REGISTRAR" class="btnL btn-lg" onclick="newUser()">
                             </div>
                             </form>
                             </div>
@@ -90,7 +90,7 @@ function formularioLogin(){
 <div class="row">
     <form control="" class="form-group" >
         <div class="row">
-            <input type="text" name="username" id="username" class="form__input" placeholder="Username">
+            <input type="text" name="username" id="username" class="form__input" placeholder="Correo">
         </div>
         <div class="row">
             <!-- <span class="fa fa-lock"></span> -->

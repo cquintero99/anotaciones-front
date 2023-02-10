@@ -62,7 +62,7 @@ async function agregoMateriaLista(materia,idUsuario){
 
     })
     .then(res=>res.json())
-    .then(data=>{console.log(data)
+    .then(data=>{
         Swal.fire({
             icon: 'success',
             title: 'Materia: '+materia.nombre+' se registro con exito',

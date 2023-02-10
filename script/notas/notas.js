@@ -29,7 +29,7 @@ function cargarColorNotas(){
     let body = "";
     if(notas.length===0){
       body=`<div class="col align-self-center p-5">
-      <div class="cardR  l-bg-orange" style="max-width: 1200px;">
+      <div class="cardR   l-bg-orange" style="max-width: 1200px;">
           <div class="card-statistic-3 p-4">
               <div class="card-icon card-icon-large"></div>
               <div class="mb-4">
@@ -66,7 +66,7 @@ function cargarColorNotas(){
           
           <div class=" col-md-4 col-sm-6">
           
-             <div class="card card-margin ${colorNotas[cargarColorNotas()]} "  style="max-width: 840px;" >
+             <div class="card  card-margin ${colorNotas[cargarColorNotas()]} "  style="max-width: 840px;" >
              
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         

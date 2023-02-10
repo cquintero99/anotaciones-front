@@ -37,3 +37,7 @@
     background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
     color: #fff;
 }
+.l-bg-red {
+    background: linear-gradient(135deg, #f52828, #f50404) !important;
+    color: #f00202;
+}

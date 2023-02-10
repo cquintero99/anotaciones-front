@@ -38,7 +38,7 @@ function cargarMenu(){
     <a class="nav-link fw-bold text-light active" href="#">PERFIL</a>
   </li>
   <li class="nav-item">
-  <a class="nav-link fw-bold text-light active" href="#" onclick="cerrarSesion()">SALIR</a>
+  <a class="nav-link fw-bold text-light active" href="#" onclick="cerrarSesion()"><span><i class="material-icons">exit_to_app</i></span></a>
 </li>
  
 </ul>
