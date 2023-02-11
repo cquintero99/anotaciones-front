@@ -8,23 +8,20 @@ function cargarModalBuscar(){
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">INVITAR USUARIO</h1>
+          
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div id="alertMateriaAmigo"></div>
         <div class="modal-body" id="btnModalInvitar">
-                      <form class="row g-3">
-                
-                <div class="col-auto">
-                  <label for="emailBuscar" class="visually-hidden">Email</label>
-                  <input type="email" class="form-control" id="emailBuscar"  placeholder="email@example.com">
-                </div>
-                <div class="col-auto">
-                  <button type="submit" class="btn btn-primary mb-3" onclick="buscarPorCorreo()">BUSCAR</button>
-                </div>
-              </form>
+        <form class="d-flex" >
+
+
+        <input class="form-control me-2" type="text" placeholder="email " aria-label="Search" id="buscarAmigosLista" onclick="buscarAmigoLista()">
+        <button class="btn btn-outline" type="buttom">@gmail.com</button>
+      </form>
 
               <div class="widget-49">
-              <ol class="widget-49-meeting-points">
-                              <li class="widget-49-meeting-item "><span>DESCRIPCION:</span></li>
+              <ol class="widget-49-meeting-points" id="listaAmigos">
               </ol>
               </div>
 

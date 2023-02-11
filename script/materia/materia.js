@@ -108,7 +108,7 @@ function cargarMateria(data) {
                                                           </span>
                     
                                                             <span class="float-element"   >
-                                                            <a href="#" class="text-light"   data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="modalInvitar(${data[i].id})">
+                                                            <a href="#" class="text-light"   data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="modalInvitar(${data[i].materia.id})">
                                                             <i class="material-icons">group</i></a>
                                                           </span>
                                                           
