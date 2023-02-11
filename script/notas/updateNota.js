@@ -46,7 +46,6 @@ async function updateNota(id){
     let categoria=document.getElementById("selectCategorias")
     let nombreCategoria=categoria.options[categoria.selectedIndex].text
     let materia_id=localStorage.getItem("idMateria")
-    let usuario_id=1
     let titulo=document.getElementById("titulo").value
     let descripcion=document.getElementById("descripcion").value
     let fecha=document.getElementById("fecha")
@@ -59,7 +58,6 @@ async function updateNota(id){
             nombre:nombreCategoria
         },
         materia_id,
-        usuario_id,
         titulo,
         descripcion,
         fecha_entrega,

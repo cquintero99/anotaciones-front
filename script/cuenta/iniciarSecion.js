@@ -1,12 +1,28 @@
-async function iniciarSesion(){
+ function iniciarSesion(){
     let email =document.getElementById("username").value
     let password=document.getElementById("password").value
-
+    
     const auth={
         email,
         password
     }
+    if(email!=="" && password!==""){
+        verificoExisteCuenta(auth,email)
 
+   // entrarCuenta(auth);
+   
+    }else{
+        body=`<div class="alert alert-warning" role="alert">
+        <a href="#" class="alert-link">CREDENCIALES INCOMPLETAS</a>
+     </div>`
+    document.getElementById("alertLogin").innerHTML=body;
+         setTimeout(()=>{ document.getElementById("alertLogin").innerHTML="";
+                    },4500)
+    }
+
+}
+
+async function entrarCuenta(auth){
     const result=await fetch('http://localhost:8088/login',{
         crossDomain:true,
         method: 'POST',
@@ -35,19 +51,42 @@ async function iniciarSesion(){
                     location.reload()
             },JSON.parse(localStorage.getItem("data")).exp)
           } else {
-            console.error('No se pudo obtener el token');
-            alert("USUARIO ERROR")
+            body=`<div class="alert alert-danger" role="alert">
+             <a href="#" class="alert-link">CONTRASEÑA INCORRECTA</a>
+          </div>`
+    document.getElementById("alertLogin").innerHTML=body;
+         setTimeout(()=>{ document.getElementById("alertLogin").innerHTML="";
+                    },4500)
           }
     })
     .catch(err=>{
         console.log(err)
     })
-
-    console.log(result)
 }
 
+async function verificoExisteCuenta(auth,email){
+    const result =await fetch("http://localhost:8088/usuarios/"+email+"/correo",)
+    .then(res=>res.json())
+    .then(data=>{
+        
+        if(data===true){
+            entrarCuenta(auth)
+        }else{
+            body=`<div class="alert alert-danger" role="alert">
+            <a href="#" class="alert-link">CUENTA NO ESTA REGISTRADA</a>
+         </div>`
+    document.getElementById("alertLogin").innerHTML=body;
+         setTimeout(()=>{ document.getElementById("alertLogin").innerHTML="";
+                    },4500)
+        }
 
- function online(){
+    })
+    .catch(error=>{
+        console.log(error)
+    })
+}
+
+function online(){
     var auxtoken=localStorage.getItem("token")
     var id=JSON.parse(localStorage.getItem("data")).id
     if(auxtoken!==undefined && id!==undefined  ){

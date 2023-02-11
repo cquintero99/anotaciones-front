@@ -1,8 +1,10 @@
 async function saveNota(){
+    
     let categoria=document.getElementById("selectCategorias")
     let nombreCategoria=categoria.options[categoria.selectedIndex].text
+    //ID MATERIA LOOK
     let materia_id=localStorage.getItem("idMateria")
-    let usuario_id=1
+    let usuario_id=JSON.parse(localStorage.getItem("data")).id
     let titulo=document.getElementById("titulo").value
     let descripcion=document.getElementById("descripcion").value
     let fecha_entrega=document.getElementById("fecha").value

@@ -35,11 +35,12 @@ function cargarMenu(){
     <a class="nav-link fw-bold text-light active" href="#" onclick="listaMateria()">MATERIAS</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link fw-bold text-light active" href="#">PERFIL</a>
+    <a class="nav-link fw-bold text-light active"  href="#"  >PERFIL</a>
   </li>
   <li class="nav-item">
-  <a class="nav-link fw-bold text-light active" href="#" onclick="cerrarSesion()"><span><i class="material-icons">exit_to_app</i></span></a>
+  <a class="nav-link fw-bold text-light active" href="#" onclick="cerrarSesion()" > <i class="material-icons">exit_to_app</i></a>
 </li>
+
  
 </ul>
 <p>${nombre}</p>

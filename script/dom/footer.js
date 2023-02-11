@@ -1,7 +1,12 @@
 cargarFooter()
+function random(){
+  return Math.floor(Math.random()*7);
+}
 function cargarFooter(id){
+  const colorMenu=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-dark","l-bg-cyan","l-bg-green","l-bg-orange","l-bg-cyan2"]
+   
     body=`<!-- Footer -->
-    <footer class="text-center text-lg-start bg-white text-muted">
+    <footer class="text-center text-lg-start  ${colorMenu[random()]}  text-light">
       <!-- Section: Social media -->
       <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
         <!-- Left -->

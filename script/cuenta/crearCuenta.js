@@ -33,7 +33,19 @@ async function saveUsuario(usuario){
     .then(response=>response.json())
     .then(newData=>{
         console.log(newData)
-        alert("user creado")
+        Swal.fire({
+            icon: 'success',
+            title: 'CORRECTO',
+            text: 'Cuenta creada con exito !',
+            footer: '<a href="">Bienvenido</a>'
+          })
+          setTimeout(()=>{
+            formularioLogin();
+            document.getElementById("username").value=usuario.correo
+            document.getElementById("password").value=usuario.contraseña
+            iniciarSesion();
+
+          },2000)
     })
     .catch(error=>{
         console.log(error)

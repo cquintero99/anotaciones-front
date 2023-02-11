@@ -23,9 +23,10 @@ async function resumenMateria(id){
         <div class="card-statistic-3 p-4">
             
             <div class="card-icon card-icon-large">
-            <i class="material-icons">menu_book</i>Materia</div>
+            <i class="material-icons">menu_book</i></div>
             <div class="mb-4">
-                <h5 class="card-title mb-0">${materia.nombre}</h5>
+                <h5 class=" card-title mb-0" > <a href="#"  class="text-light" onclick="listaNotas(${materia.id})">${materia.nombre}</a></h5>
+                
             </div>
             <div class="row align-items-center mb-2 d-flex">
                 <div class="col-8">
