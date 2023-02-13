@@ -1,4 +1,4 @@
-async function saveNota(){
+ function saveNota(){
     
     let categoria=document.getElementById("selectCategorias")
     let nombreCategoria=categoria.options[categoria.selectedIndex].text
@@ -24,29 +24,54 @@ async function saveNota(){
         fecha_registro,
         estado
     }
-    let token=localStorage.getItem("token")
-    const resultNota=await fetch('http://localhost:8088/anotacion',{
-        method:'POST',
-        body:JSON.stringify(anotacion),
-        headers:{
-            "Content-type":"Application/json",
-            "Authorization":"Bearer "+token
+    guardarNota(anotacion)
 
-        }
-    })
-    .then(response=>response.json())
-    .then(data=>{
-        Swal.fire({
-            icon: 'success',
-            title: 'Nota: '+titulo+' Registrada',
-            showConfirmButton: false,
-            timer: 1000
-          })
-          
-          setTimeout(cargarNotasU(materia_id),1800)
-    })
-    .catch(error=>{
-        console.log(error)
-    })
+   
 
+  }
+
+    async function verfGuardarNota(anotacion){
+        let token=localStorage.getItem("token")
+        const resultNota=await fetch('http://localhost:8088/anotacion',{
+            method:'POST',
+            body:JSON.stringify(anotacion),
+            headers:{
+                "Content-type":"Application/json",
+                "Authorization":"Bearer "+token
+    
+            }
+        })
+        .then(response=>response.json())
+        .then(data=>{
+            Swal.fire({
+                icon: 'success',
+                title: 'Nota: '+data.titulo+' Registrada',
+                showConfirmButton: false,
+                timer: 1000
+              })
+              
+              setTimeout(cargarNotasU(data.materia_id),1800)
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+    }  
+   function guardarNota(anotacion){
+    integrantesMateria(anotacion.materia_id)
+    .then(res=>res.json())
+    .then(integrantes=>{
+       let idUsuario=JSON.parse(localStorage.getItem("data")).id
+     
+       const data2 = integrantes.filter(integrantes => integrantes.usuario_id===idUsuario);
+      
+      
+       if(data2[0].usuario_id===idUsuario){
+        verfGuardarNota(anotacion)
+       }else{
+        location.reload()
+       }
+       
+       
+    })
+    
   }

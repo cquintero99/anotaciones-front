@@ -58,7 +58,7 @@ function formularioRegistro(){
                       <div class="row">
                        <form control="" class="form-group" >
                         <div class="row">
-                            <input type="text" name="nombre" id="nombre" class="form__input" placeholder="Nombre">
+                            <input type="text" name="nombre" id="nombre" class="form__input " placeholder="Nombre">
                         </div>
                         <div class="row">
                             <input type="text" name="apellido" id="apellido" class="form__input" placeholder="Apellido">
@@ -86,7 +86,7 @@ function formularioRegistro(){
                             </form>
                             </div>
                             <div class="row">
-                                <p>Ya tengo una cuenta! <a href="#" onclick="cargarLogin()">Iniciar secion</a></p>
+                                <p>Ya tengo una cuenta! <a href="#" onclick="cargarLogin()">Iniciar Sesion</a></p>
                             </div>
     `
     document.getElementById("formulario").innerHTML=body

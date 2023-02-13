@@ -69,7 +69,8 @@ async function agregoMateriaLista(materia,idUsuario){
             showConfirmButton: false,
             timer: 1500
           })
-          setTimeout(recargar,1500)})
+          listaMateria()
+        })
     .catch(err=>{
         console.log("error registrar ususario materia"+err)
     })

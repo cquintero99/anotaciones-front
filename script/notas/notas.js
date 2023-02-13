@@ -1,5 +1,6 @@
-async function listaNotas(id) {
+async function listaNotas(id,rolMateria) {
     localStorage.setItem("idMateria",id)
+    console.log(rolMateria)
     resumenMateria(id)
     let token=localStorage.getItem("token")
     
@@ -9,7 +10,7 @@ async function listaNotas(id) {
     }
     })
       .then((response) => response.json())
-      .then((notas) => {cargarNotas(notas)
+      .then((notas) => {cargarNotas(notas,rolMateria)
         
     })
       .catch((arr) => console.log(arr));
@@ -29,7 +30,7 @@ function cargarColorNotas(){
 
 
 
-  function cargarNotas(notas) {
+  function cargarNotas(notas,rolMateria) {
     let body = "";
     if(notas.length===0){
       body=`<div class="col align-self-center p-5">
@@ -69,11 +70,17 @@ function cargarColorNotas(){
       let mes=Number(fecha.getUTCMonth())
       let rol="";
       let id=JSON.parse(localStorage.getItem("data")).id
-      if(id===notas[i].usuario_id){
+      if(id===notas[i].usuario_id || rolMateria==="Creador" ){
+        //console.log(rolMateria)
+        if(rolMateria==="Creador"){
+          rol="ADMIN"
+        }else{
+          
         rol="CREADOR"
+        }
         body += `
           
-        <div class=" col-md-6 col-sm-6">
+        <div class=" col-md-4 col-sm-6">
         
            <div class="card  card-margin ${colorNotas[cargarColorNotas()]} "  style="max-width: 840px;" >
            
@@ -90,51 +97,51 @@ function cargarColorNotas(){
                     </svg>${notas[i].categoria.nombre}</h5>
                       </div>
                
-                <div class="card-body pt-0">
-                    <div class="widget-49">
-                            <div class="widget-49-title-wrapper border-bottom border-dark">
-                                    <div class="widget-49-date-${colorFecha[cargarColorFecha()]}">
-                                        <span class="widget-49-date-day">${dia}</span>
-                                        <span class="widget-49-date-month">${meses[mes]}</span>
-                                    </div>
-                                      <div class="widget-49-meeting-info">
-                                      <span class="widget-49-meeting-time">TITULO</span>
-                                          <h3><span >${notas[i].titulo}</span></h3>
-                                          
-                                      </div>
-                            </div>
+                                  <div class="card-body pt-0">
+                                      <div class="widget-49">
+                                              <div class="widget-49-title-wrapper border-bottom border-dark">
+                                                      <div class="widget-49-date-${colorFecha[cargarColorFecha()]}">
+                                                          <span class="widget-49-date-day">${dia}</span>
+                                                          <span class="widget-49-date-month">${meses[mes]}</span>
+                                                      </div>
+                                                        <div class="widget-49-meeting-info">
+                                                        <span class="widget-49-meeting-time">TITULO</span>
+                                                            <h3><span >${notas[i].titulo}</span></h3>
+                                                            
+                                                        </div>
+                                              </div>
 
-                         
-                          <ol class="widget-49-meeting-points">
-                              <li class="widget-49-meeting-item "><span>DESCRIPCION:</span></li>
-                              <textarea class="form-control fw-semibold " id="exampleFormControlTextarea1" rows="3">${notas[i].descripcion}
-                              </textarea>
-                              
-                              
-                              <li class="widget-49-meeting-item" ><span >ESTADO:  </span></li>
-                              <p class="text-center border border-light fw-semibold fs-6" onclick="cambiarEstado(${notas[i].id})">${notas[i].estado} </p>
-                             
-                              
-                              <li class="widget-49-meeting-item"><span>ARCHIVOS</span></li>
-                              <div class="mb-3">
-                              <p class="text-center border border-light fw-semibold fs-6">PDF, JPG , EXEL , WORD </p>
-                              <input class="form-control" type="file" id="formFile">
-                              </div>
-                              <li class="widget-49-meeting-item"><span>ROL</span></li>
-                              <p class="text-center border border-light fw-semibold fs-6">${rol}</p>
-                          </ol>
-                          
-                          <div class="widget-49-meeting-action" id="btnEditarNota">
-                              <a href="#" class="btn btn-sm btn-flash-border-primary"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="modalNota(${notas[i].id})" >Editar <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-</svg></a>
-                          </div>
-                          <div class="widget-49-meeting-info text-center border-top ">
-                                      <span class="widget-49-meeting-time text-muted">${notas[i].fecha_registro.substr(0,10)}</span>
-                          </div>
-                    </div>
-                  </div>
+                                          
+                                            <ol class="widget-49-meeting-points">
+                                                <li class="widget-49-meeting-item "><span>DESCRIPCION:</span></li>
+                                                <textarea class="form-control fw-semibold " id="exampleFormControlTextarea1" rows="3">${notas[i].descripcion}
+                                                </textarea>
+                                                
+                                                
+                                                <li class="widget-49-meeting-item" ><span >ESTADO:  </span></li>
+                                                <p class="text-center border border-light fw-semibold fs-6" onclick="cambiarEstado(${notas[i].id})">${notas[i].estado} </p>
+                                              
+                                                
+                                                <li class="widget-49-meeting-item"><span>ARCHIVOS</span></li>
+                                                <div class="mb-3">
+                                                <p class="text-center border border-light fw-semibold fs-6">PDF, JPG , EXEL , WORD </p>
+                                                <input class="form-control" type="file" id="formFile">
+                                                </div>
+                                                <li class="widget-49-meeting-item"><span>ROL</span></li>
+                                                <p class="text-center border border-light fw-semibold fs-6">${rol}</p>
+                                            </ol>
+                                            
+                                            <div class="widget-49-meeting-action" id="btnEditarNota">
+                                                <a href="#" class="btn btn-sm btn-flash-border-primary"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="modalNota(${notas[i].id})" >Editar <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                  </svg></a>
+                                            </div>
+                                            <div class="widget-49-meeting-info text-center border-top ">
+                                                        <span class="widget-49-meeting-time text-muted">${notas[i].fecha_registro.substr(0,10)}</span>
+                                            </div>
+                                      </div>
+                                    </div>
            
          </div>
          </div>
@@ -143,7 +150,7 @@ function cargarColorNotas(){
         rol="ESPECTADOR"
         body += `
           
-        <div class=" col-md-6 col-sm-6">
+        <div class=" col-md-4 col-sm-6">
         
            <div class="card  card-margin ${colorNotas[cargarColorNotas()]} "  style="max-width: 840px;" >
            
@@ -159,51 +166,51 @@ function cargarColorNotas(){
                     </svg>${notas[i].categoria.nombre}</h5>
                       </div>
                
-                <div class="card-body pt-0">
-                    <div class="widget-49">
-                            <div class="widget-49-title-wrapper border-bottom border-dark">
-                                    <div class="widget-49-date-${colorFecha[cargarColorFecha()]}">
-                                        <span class="widget-49-date-day">${dia}</span>
-                                        <span class="widget-49-date-month">${meses[mes]}</span>
-                                    </div>
-                                      <div class="widget-49-meeting-info">
-                                      <span class="widget-49-meeting-time">TITULO</span>
-                                          <h3><span >${notas[i].titulo}</span></h3>
-                                          
-                                      </div>
-                            </div>
+                              <div class="card-body pt-0">
+                                  <div class="widget-49">
+                                          <div class="widget-49-title-wrapper border-bottom border-dark">
+                                                  <div class="widget-49-date-${colorFecha[cargarColorFecha()]}">
+                                                      <span class="widget-49-date-day">${dia}</span>
+                                                      <span class="widget-49-date-month">${meses[mes]}</span>
+                                                  </div>
+                                                    <div class="widget-49-meeting-info">
+                                                    <span class="widget-49-meeting-time">TITULO</span>
+                                                        <h3><span >${notas[i].titulo}</span></h3>
+                                                        
+                                                    </div>
+                                          </div>
 
-                         
-                          <ol class="widget-49-meeting-points">
-                              <li class="widget-49-meeting-item "><span>DESCRIPCION:</span></li>
-                              <textarea class="form-control fw-semibold " id="exampleFormControlTextarea1" rows="3">${notas[i].descripcion}
-                              </textarea>
-                              
-                              
-                              <li class="widget-49-meeting-item" ><span >ESTADO:  </span></li>
-                              <p class="text-center border border-light fw-semibold fs-6" onclick="cambiarEstado(${notas[i].id})">${notas[i].estado} </p>
-                             
-                              
-                              <li class="widget-49-meeting-item"><span>ARCHIVOS</span></li>
-                              <div class="mb-3">
-                              <p class="text-center border border-light fw-semibold fs-6">PDF, JPG , EXEL , WORD </p>
-                              <input class="form-control" type="file" id="formFile">
-                              </div>
-                              <li class="widget-49-meeting-item"><span>ROL</span></li>
-                              <p class="text-center border border-light fw-semibold fs-6">${rol}</p>
-                          </ol>
-                          
-                          <div class="widget-49-meeting-action" id="btnEditarNota">
-                              <a href="#" class="btn btn-sm btn-flash-border-primary"    >NOTE 
-                              
-                              </a>
-                          </div>
-                          
-                          <div class="widget-49-meeting-info text-center border-top ">
-                                      <span class="widget-49-meeting-time text-muted">${notas[i].fecha_registro.substr(0,10)}</span>
-                          </div>
-                    </div>
-                  </div>
+                                      
+                                        <ol class="widget-49-meeting-points">
+                                            <li class="widget-49-meeting-item "><span>DESCRIPCION:</span></li>
+                                            <textarea class="form-control fw-semibold " id="exampleFormControlTextarea1" rows="3">${notas[i].descripcion}
+                                            </textarea>
+                                            
+                                            
+                                            <li class="widget-49-meeting-item" ><span >ESTADO:  </span></li>
+                                            <p class="text-center border border-light fw-semibold fs-6" onclick="cambiarEstado(${notas[i].id})">${notas[i].estado} </p>
+                                          
+                                            
+                                            <li class="widget-49-meeting-item"><span>ARCHIVOS</span></li>
+                                            <div class="mb-3">
+                                            <p class="text-center border border-light fw-semibold fs-6">PDF, JPG , EXEL , WORD </p>
+                                            <input class="form-control" type="file" id="formFile">
+                                            </div>
+                                            <li class="widget-49-meeting-item"><span>ROL</span></li>
+                                            <p class="text-center border border-light fw-semibold fs-6">${rol}</p>
+                                        </ol>
+                                        
+                                        <div class="widget-49-meeting-action" id="btnEditarNota">
+                                            <a href="#" class="btn btn-sm btn-flash-border-primary"    >NOTE 
+                                            
+                                            </a>
+                                        </div>
+                                        
+                                        <div class="widget-49-meeting-info text-center border-top ">
+                                                    <span class="widget-49-meeting-time text-muted">${notas[i].fecha_registro.substr(0,10)}</span>
+                                        </div>
+                                  </div>
+                                </div>
            
          </div>
          </div>
@@ -211,8 +218,7 @@ function cargarColorNotas(){
       }
      
     }
-    document.getElementById("root").innerHTML="";
-    document.getElementById("rootNotas").innerHTML=body;
+    document.getElementById("root").innerHTML=body;
     cargarModalNota()
   }
 

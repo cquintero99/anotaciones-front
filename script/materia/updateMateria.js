@@ -66,8 +66,7 @@ Swal.fire({
     showConfirmButton: false,
     timer: 1500
   })
-
-  setTimeout(recargar,1500)
+    listaMateria()
     })
     .catch(err=>{
         console.log(err)

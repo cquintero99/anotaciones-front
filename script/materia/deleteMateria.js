@@ -50,8 +50,7 @@ async function deleteMateria(id){
       icon: 'success',
       showCloseButton: true
     })
-   setTimeout(recargar
-   , 1500);
+    listaMateria()
 
   })
   .catch(err=>{
@@ -59,22 +58,34 @@ async function deleteMateria(id){
   })
 }
 
+
+
 function dejarMateria(id){
   Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
+    title: 'Salir de la Materia?',
+    text: "Se eliminaran tus notas",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
+    confirmButtonText: 'Si, Salir!'
   }).then((result) => {
     if (result.isConfirmed) {
-      Swal.fire(
-        'Deleted!',
-        'Your file has been deleted.',
-        'success'
-      )
+      salirGrupoMateria(id)
     }
+  })
+}
+async function salirGrupoMateria(id){
+  let token=localStorage.getItem("token")
+  await fetch('http://localhost:8088/user/materia/'+id,{
+    method:'DELETE',
+    headers:{
+      "Content-type":"Application/json",
+      "Authorization":"Bearer "+token
+    }
+  })
+  .then(res=>res.json())
+  .then(data=>{
+    listaMateria()
   })
 }

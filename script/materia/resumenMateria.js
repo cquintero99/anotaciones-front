@@ -1,10 +1,14 @@
-async function resumenMateria(id){
+async function findByIdMateria(id){
     let token=localStorage.getItem("token")
     const result=await fetch("http://localhost:8088/materia/"+id,{
         headers:{
             "Authorization":"Bearer "+token
         }
     })
+    return result;
+  }
+  function resumenMateria(id){
+    findByIdMateria(id)
     .then(response=>response.json())
     .then(data=>cargarResumenMateria(data))
     .catch(error=>console.log(error))

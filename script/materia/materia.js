@@ -5,7 +5,6 @@ async function listaMateria() {
  //  var stateObj = { foo: "materias" };
 //history.pushState(stateObj, "page 2", "materias.html");
     document.getElementById("resumenMateria").innerHTML=""
-    document.getElementById("rootNotas").innerHTML=""
     document.getElementById("login").innerHTML=""
     localStorage.setItem("idMateria","")
     let token=localStorage.getItem("token")
@@ -24,6 +23,24 @@ let count=0;
 function cargarColor(){
     if(count>5)count=0;
     return count++;
+}
+
+function copiarId(id){
+  navigator.clipboard.writeText(id)
+  
+  .then(()=>{
+    console.log("copiado")
+    document.getElementById("alertCopiar"+id).innerHTML="<p> ID COPIADO</p > "
+    setTimeout(()=>{
+      
+    document.getElementById("alertCopiar"+id).innerHTML=""
+    },3500)
+  })
+  .catch(err=>{
+    
+    console.log("no copia")
+  })
+
 }
 
 function cargarMateria(data) {
@@ -74,25 +91,28 @@ function cargarMateria(data) {
     
       <div class="col-md-6 col-sm-6 content-card">
           
-          <div class="card card-big-shadow" style="max-width: 540px;">
+          <div class=" card-big-shadow" style="max-width: 540px;">
               
                <div class="card card-just-text" data-background="color" data-color="${color[cargarColor()]}" data-radius="none">
                  
                           
-                                        <div class="content">
-                                                <p><a href="#" onclick="listaNotas(${data[i].materia.id})"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                                        <div class="content" >
+                                              <div onclick="listaNotas(${data[i].materia.id}, '${rol}')">
+                                                <p><a href="#" ><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
                                                 <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
                                               </svg></a></p>
-                                                <h5 class="title"><a href="#" onclick="listaNotas(${data[i].materia.id})"> ${nombre}</a></h5>
+                                                <h5 class="title"><a href="#"> ${nombre}</a></h5>
+                                                </div>
                                                 <h6 class="category">${data[i].materia.codigo} - ${data[i].materia.grupo}</h6>
                                                 <p class="description">Docente: </p>
                                                 <p class="description">${data[i].materia.profesor}</p>
                                                 <p>${rol}</p>
-                                                
+                                                <p class="user-select-all fw-bold" onclick="copiarId(${data[i].materia.id})"> ID: ${data[i].materia.id}</p>
+                                                <div id="alertCopiar${data[i].materia.id}"></div>
                                         </div>
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                         <div class="floating-container">
-                                                          <div class="floating-button"><i class="material-icons">settings</i></div>
+                                                       <div class="floating-button"><i class="material-icons">settings</i></div>
                                                       <div class="element-container">
                                                       
                                                           <a href="#" onclick="eliminarMateria(${data[i].materia.id})"> <span class="float-element tooltip-left" >
@@ -132,27 +152,31 @@ function cargarMateria(data) {
       rol="Invitado"
       body += ` 
     
-      <div class="col-md-4 col-sm-6 content-card">
+      <div class="col-md-6 col-sm-6 content-card">
           
           <div class="card-big-shadow" style="max-width: 540px;">
               
                <div class="card card-just-text" data-background="color" data-color="${color[cargarColor()]}" data-radius="none">
                  
                           
-                                        <div class="content">
+                                        <div class="content" >
+                                        <div onclick="listaNotas(${data[i].materia.id}, '${rol}')">
                                                 <p><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
                                                 <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
                                               </svg></p>
-                                                <h4 class="title"><a href="#" onclick="listaNotas(${data[i].materia.id})"> ${nombre}</a></h4>
+                                                <h4 class="title"><a href="#" > ${nombre}</a></h4>
+                                        </div>
                                                 <h6 class="category">${data[i].materia.codigo} - ${data[i].materia.grupo}</h6>
                                                 <p class="description">Docente: </p>
                                                 <p class="description">${data[i].materia.profesor}</p>
                                                 <p>${rol}</p>
+                                                <p class="user-select-all fw-bold" onclick="copiarId(${data[i].materia.id})"> ID: ${data[i].materia.id}</p>
+                                                <div id="alertCopiar${data[i].materia.id}"></div>
                                                 
                                         </div>
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                         <div class="floating-container ">
-                                                          <div class="floating-button l-bg-red" onclick="dejarMateria(${data[i].materia.id})"><i class="material-icons">exit_to_app</i></div>
+                                                          <div class="floating-button l-bg-red" onclick="dejarMateria(${data[i].id})"><i class="material-icons">exit_to_app</i></div>
                                                      
                                               </div>
                                                   

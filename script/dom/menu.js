@@ -6,7 +6,7 @@ cargarMenuLogo()
 function cargarMenuLogo(){
   const colorMenu=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-dark","l-bg-cyan","l-bg-green","l-bg-orange","l-bg-cyan2"]
    
-    body=` <div class="text-center  ${colorMenu[random()]}  p-3">
+    body=` <div class="text-center  ${colorMenu[random()]} sticky-top p-3">
     <br>
     <a href="index.html" class="link-light ">
     
@@ -29,13 +29,13 @@ function cargarMenu(){
   body=
   `<ul class="nav justify-content-center p-3 ">
   <li class="nav-item">
-    <a class="nav-link fw-bold text-light active" aria-current="page" href="index.html">HOME</a>
+    <a class="nav-link fw-bold text-light active" aria-current="page" href="#" onclick="cargarHome()">HOME</a>
   </li>
   <li class="nav-item">
     <a class="nav-link fw-bold text-light active" href="#" onclick="listaMateria()">MATERIAS</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link fw-bold text-light active"  href="#"  >PERFIL</a>
+    <a class="nav-link fw-bold text-light active"  href="#" onclick="cargarPerfil()" >PERFIL</a>
   </li>
   <li class="nav-item">
   <a class="nav-link fw-bold text-light active" href="#" onclick="cerrarSesion()" > <i class="material-icons">exit_to_app</i></a>

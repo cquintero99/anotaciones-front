@@ -19,11 +19,13 @@ function cargarModalBuscar(){
         <input class="form-control me-2" type="text" placeholder="email " aria-label="Search" id="buscarAmigosLista" onclick="buscarAmigoLista()">
         <button class="btn btn-outline" type="buttom">@gmail.com</button>
       </form>
-
+              
+  <div class="overflow-scroll ">
               <div class="widget-49">
               <ol class="widget-49-meeting-points" id="listaAmigos">
               </ol>
               </div>
+  </div>
 
         </div>
         <div class="modal-footer">

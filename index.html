@@ -36,14 +36,19 @@
     <link rel="stylesheet" href="./style/coloNotas.css" />
     <link rel="stylesheet" href="./style/menu.css" />
     <link rel="stylesheet" href="./style/alert.css">
+    <link rel="stylesheet" href="./style/perfil.css">
+    <link rel="stylesheet" href="./style/home.css">
+    <link rel="stylesheet" href="./style/calendario.css">
     <title>Mi Notas</title>
   </head>
   <body onload="online()">
-    <div id="menu" class=""></div>
+    <header id="menu" class=""></header>
 
     <div id="login"></div>
     <div id="resumenMateria"></div>
+    <div id="perfil"></div>
     <div id="modal"></div>
+   
     <div class="container">
       <div class="row text-center" id="root"></div>
     </div>
@@ -51,6 +56,7 @@
     <div class="container">
       <div class="row  " id="rootNotas"></div>
     </div>
+    
 
     <br>
     <div id="footer" ></div>
@@ -70,15 +76,20 @@
     <script src="./script/cuenta/crearCuenta.js"></script>
     <script src="./script/cuenta/buscarAmigos.js"></script>
     <script src="./script/cuenta/eliminarAmigo.js"></script>
+    <script src="./script/cuenta/cargarPerfil.js"></script>
+    <script src="./script/cuenta/seguidores.js"></script>
     <script src="./script/dom/footer.js"></script>
     <script src="./script/dom/login.js"></script>
     <script src="./script/dom/menu.js"></script>
+    <script src="./script/dom/home.js"></script>
+    <script src="./script/dom/calendario.js"></script>
     <script src="./script/materia/deleteMateria.js"></script>
     <script src="./script/materia/materia.js"></script>
     <script src="./script/materia/resumenMateria.js"></script>
     <script src="./script/materia/saveMateria.js"></script>
     <script src="./script/materia/updateMateria.js"></script>
     <script src="./script/materia/invitarMateria.js"></script>
+    <script src="./script/materia/buscarMateria.js"></script>
     <script src="./script/notas/delete.js"></script>
     <script src="./script/notas/notas.js"></script>
     <script src="./script/notas/saveNota.js"></script>
