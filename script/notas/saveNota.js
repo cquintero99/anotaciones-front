@@ -1,4 +1,4 @@
- function saveNota(){
+ function saveNota(rolMateria){
     
     let categoria=document.getElementById("selectCategorias")
     let nombreCategoria=categoria.options[categoria.selectedIndex].text
@@ -24,13 +24,33 @@
         fecha_registro,
         estado
     }
-    guardarNota(anotacion)
+    guardarNota(anotacion,rolMateria)
 
    
 
   }
+  function guardarNota(anotacion,rolMateria){
+    integrantesMateria(anotacion.materia_id)
+    .then(res=>res.json())
+    .then(integrantes=>{
+       let idUsuario=JSON.parse(localStorage.getItem("data")).id
+     
+       const data2 = integrantes.filter(integrantes => integrantes.usuario_id===idUsuario);
+      
+      
+       if(data2[0].usuario_id===idUsuario){
+        verfGuardarNota(anotacion,rolMateria)
+       }else{
+        location.reload()
+       }
+       
+       
+    })
+    
+  }
 
-    async function verfGuardarNota(anotacion){
+
+    async function verfGuardarNota(anotacion,rolMateria){
         let token=localStorage.getItem("token")
         const resultNota=await fetch('http://localhost:8088/anotacion',{
             method:'POST',
@@ -49,29 +69,12 @@
                 showConfirmButton: false,
                 timer: 1000
               })
-              
-              setTimeout(cargarNotasU(data.materia_id),1800)
+              listaNotas(data.materia_id,rolMateria)
+              //setTimeout(cargarNotasU(data.materia_id),1800)
         })
         .catch(error=>{
             console.log(error)
         })
-    }  
-   function guardarNota(anotacion){
-    integrantesMateria(anotacion.materia_id)
-    .then(res=>res.json())
-    .then(integrantes=>{
-       let idUsuario=JSON.parse(localStorage.getItem("data")).id
+    } 
      
-       const data2 = integrantes.filter(integrantes => integrantes.usuario_id===idUsuario);
-      
-      
-       if(data2[0].usuario_id===idUsuario){
-        verfGuardarNota(anotacion)
-       }else{
-        location.reload()
-       }
-       
-       
-    })
-    
-  }
+ 

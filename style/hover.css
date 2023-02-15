@@ -20,9 +20,9 @@
   }
   
   .hover-2 {
-    --c: #1095c1; /* the color */
+    --c: #ffffff; /* the color */
     --b: .1em;    /* border length*/
-    --d: 20px;    /* the cube depth */
+    --d: 0px;    /* the cube depth */
     
     --_s: calc(var(--d) + var(--b));
     

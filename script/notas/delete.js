@@ -1,5 +1,5 @@
 
- function eliminarNota(id,idMateria,interfaz){
+ function eliminarNota(id,idMateria,rol){
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -18,8 +18,7 @@
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log("nota: "+id+" materia"+idMateria)
-        deleteNota(id,idMateria);
+        deleteNota(id,idMateria,rol);
 
 
         
@@ -36,7 +35,7 @@
     })
   }
 
-  async function deleteNota(id,idMateria){
+  async function deleteNota(id,idMateria,rol){
     let token=localStorage.getItem("token")
     const result=await fetch('http://localhost:8088/anotacion/'+id,{
       method:'DELETE',
@@ -57,11 +56,13 @@
         showConfirmButton: false,
         timer: 1500
       })
-    
-     setTimeout(cargarNotasU(idMateria),1500)
+      listaNotas(idMateria,rol)
+    // setTimeout(cargarNotasU(idMateria),1500)
     })
     
     .catch(err=>{
       console.log("error e nota")
     })
   }
+
+ 

@@ -1,4 +1,4 @@
-function cargarModalNota(){
+function cargarModalNota(rolMateria){
     const colorNotas=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-dark","l-bg-cyan","l-bg-green","l-bg-orange","l-bg-cyan2"]
      
       body=`
@@ -36,7 +36,7 @@ function cargarModalNota(){
             </div>
             <div class="modal-footer" id="btnModalNota">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary" onclick="saveNota()" data-bs-dismiss="modal">Guardar</button>
+              <button type="button" class="btn btn-primary" onclick="saveNota('${rolMateria}')" data-bs-dismiss="modal">Guardar</button>
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ function cargarPerfil(){
   let correo=JSON.parse(localStorage.getItem("data")).sub
   
   let genero=JSON.parse(localStorage.getItem("data")).genero  
+  let fechaNacimiento=JSON.parse(localStorage.getItem("data")).fechaNacimiento
   let hoy=new Date()
   let urlImg='https://bootdey.com/img/Content/avatar/avatar7.png'
   if(genero==="Femenino"){
@@ -39,6 +40,7 @@ function cargarPerfil(){
                  <div class="card-body" id="actualizarInformacion">
                  <div class="row">
                  <div class="col p-3">
+                 <div id="alertUpdateUser"></div>
                  <p class="text-dark fw-bold">INFORMACION DEL PERFIL</p>
                  </div>
                  </div>
@@ -70,6 +72,16 @@ function cargarPerfil(){
                    </div>
                    <hr>
                    <div class="row">
+                   <div class="col-sm-3">
+                     <h6 class="mb-0">Fecha Nacimiento:</h6>
+                   </div>
+                   <div class="col-sm-9 text-secondary">
+                   ${new Date(fechaNacimiento).toLocaleDateString()}
+                   </div>
+                   </div>
+
+                   <hr>
+                   <div class="row">
                      <div class="col-sm-3">
                        <h6 class="mb-0">Correo</h6>
                      </div>
@@ -80,7 +92,7 @@ function cargarPerfil(){
                    <hr>
                    <div class="row">
                    <div class="col p-3">
-                   <p class="text-dark fw-bold">${hoy}</p>
+                   <p class="text-dark fw-bold">${hoy.toDateString()}</p>
                    </div>
                    </div>
                    
@@ -118,6 +130,7 @@ function cargarPerfil(){
 
      
       <div id="demo8"></div>
+      
       `
     document.getElementById("root").innerHTML=body;
     document.getElementById("modal").innerHTML=""

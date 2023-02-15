@@ -15,7 +15,6 @@ function mostrarAmigos(){
     buscarMisSeguidores()
     .then(res=>res.json())
     .then(data=>{
-        console.log(data)
         let body=`<h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>${data.length} - AMIGOS </h6>
         `
         for (let i = 0; i < data.length; i++) {

@@ -90,7 +90,7 @@ function cargarMateria(data) {
       rol="Creador"
       body += ` 
     
-      <div class="col-md-6 col-sm-6 content-card hover-4">
+      <div class="col-md-6 col-sm-6 content-card hover-2">
           
           <div class=" card-big-shadow" style="max-width: 540px;">
               
@@ -166,7 +166,7 @@ function cargarMateria(data) {
       rol="Invitado"
       body += ` 
     
-      <div class="col-md-6 col-sm-6 content-card hover-4">
+      <div class="col-md-6 col-sm-6 content-card hover-2">
           
           <div class="card-big-shadow" style="max-width: 540px;">
               

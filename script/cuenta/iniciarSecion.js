@@ -46,7 +46,8 @@ async function verificoExisteCuenta(auth,email){
         console.log(error)
     })
 }
-async function entrarCuenta(auth){
+
+async function envioDatoslogin(auth){
     const result=await fetch('http://localhost:8088/login',{
         crossDomain:true,
         method: 'POST',
@@ -57,6 +58,11 @@ async function entrarCuenta(auth){
                   'Access-Control-Request-Method': 'POST'
                   }
     })
+    return result;
+}
+
+ function entrarCuenta(auth){
+    envioDatoslogin(auth)
     .then(response=>response)
     .then(JWT=>{
         if (JWT.status === 200 && JWT.headers.has('Authorization')) {

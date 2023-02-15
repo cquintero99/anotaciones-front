@@ -1,4 +1,4 @@
-async function modalNota(id){
+async function modalNota(id,rolMateria){
     //cargarCategorias()
     let token=localStorage.getItem("token")
     const result=await fetch('http://localhost:8088/anotacion/'+id,{
@@ -7,14 +7,14 @@ async function modalNota(id){
         }
     })
     .then(res=>res.json())
-    .then(data=>{cargarNotaModal(data)
+    .then(data=>{cargarNotaModal(data,rolMateria)
         cargarCategoriaNota(data.categoria)
     })
     .catch(err=>console.log(err))
 
 }
 
-async function cargarNotaModal(nota){
+async function cargarNotaModal(nota,rolMateria){
    
     document.getElementById("titulo").value=nota.titulo
     document.getElementById("descripcion").value=nota.descripcion
@@ -24,7 +24,7 @@ async function cargarNotaModal(nota){
     document.getElementById("fecha").value=fecha.substr(0,10)
 
     body=` <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-    <button type="button" class="btn btn-primary" onclick="updateNota(${nota.id})" data-bs-dismiss="modal">Actualizar</button>`
+    <button type="button" class="btn btn-primary" onclick="updateNota(${nota.id},'${rolMateria}')" data-bs-dismiss="modal">Actualizar</button>`
     
     document.getElementById("btnModalNota").innerHTML=body;
 }
@@ -42,7 +42,7 @@ function cargarCategoriaNota(categoria){
 }
 
 
-async function updateNota(id){
+async function updateNota(id,rolMateria){
     let categoria=document.getElementById("selectCategorias")
     let nombreCategoria=categoria.options[categoria.selectedIndex].text
     let materia_id=localStorage.getItem("idMateria")
@@ -82,15 +82,11 @@ async function updateNota(id){
             showConfirmButton: false,
             timer: 1500
           })
-        
-         setTimeout(cargarNotasU(materia_id),1500)
+          listaNotas(materia_id,rolMateria)
+         //setTimeout(cargarNotasU(materia_id),1500)
     })
     .catch(err=>{
         console.log("EROR ACTUALIZAR NOTA"+err)
     })
 }
 
-function cargarNotasU(id){
-    listaNotas(id)
-
-}

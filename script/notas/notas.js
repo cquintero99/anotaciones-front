@@ -1,6 +1,7 @@
 async function listaNotas(id,rolMateria) {
     localStorage.setItem("idMateria",id)
     resumenMateria(id)
+    verParticipantes(id)
     let token=localStorage.getItem("token")
     
     const allNotas = await fetch("http://localhost:8088/materia/" + id + "/anotaciones",{
@@ -85,7 +86,7 @@ function cargarColorNotas(){
            
                       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                       
-                      <button type="button" class="btn"  onclick="eliminarNota(${notas[i].id},${notas[i].materia_id})" id="btnEliminarNota"> <i class="material-icons">delete
+                      <button type="button" class="btn"  onclick="eliminarNota(${notas[i].id},${notas[i].materia_id},'${rolMateria}')" id="btnEliminarNota"> <i class="material-icons">delete
                       </i></button>
                       </div>
                       <div class="card-header no-border">
@@ -138,7 +139,7 @@ function cargarColorNotas(){
                                             </ol>
                                             
                                             <div class="widget-49-meeting-action" id="btnEditarNota">
-                                                <a href="#" class="btn btn-sm btn-flash-border-primary"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="modalNota(${notas[i].id})" >Editar <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                <a href="#" class="btn btn-sm btn-flash-border-primary"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="modalNota(${notas[i].id},'${rolMateria}')" >Editar <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                   <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                   <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                   </svg></a>
@@ -187,24 +188,31 @@ function cargarColorNotas(){
                                           </div>
 
                                       
-                                        <ol class="widget-49-meeting-points">
-                                            <li class="widget-49-meeting-item "><span>DESCRIPCION:</span></li>
-                                            <textarea class="form-control fw-semibold " id="exampleFormControlTextarea1" rows="3">${notas[i].descripcion}
-                                            </textarea>
-                                            
-                                            
-                                            <li class="widget-49-meeting-item" ><span >ESTADO:  </span></li>
-                                            <p class="text-center border border-light fw-semibold fs-6" onclick="cambiarEstado(${notas[i].id})">${notas[i].estado} </p>
+                                          <ol class="widget-49-meeting-points">
+                                          <li class="widget-49-meeting-item "><span>DESCRIPCION:</span></li>
+                                          <textarea class="form-control fw-semibold " id="exampleFormControlTextarea1" rows="6">${notas[i].descripcion}
+                                          </textarea>
                                           
-                                            
-                                            <li class="widget-49-meeting-item"><span>ARCHIVOS</span></li>
-                                            <div class="mb-3">
-                                            <p class="text-center border border-light fw-semibold fs-6">PDF, JPG , EXEL , WORD </p>
-                                            <input class="form-control" type="file" id="formFile">
-                                            </div>
-                                            <li class="widget-49-meeting-item"><span>ROL</span></li>
-                                            <p class="text-center border border-light fw-semibold fs-6">${rol}</p>
-                                        </ol>
+                                          
+                                          
+                                          <li class="widget-49-meeting-item"><span>ARCHIVOS</span></li>
+                                          <div class="mb-3">
+                                          <p class="text-center border border-light fw-semibold fs-6">PDF, JPG , EXEL , WORD </p>
+                                          <input class="form-control" type="file" id="formFile">
+                                          </div>
+                                          <table class="table  text-light table-borderless">
+                                          <thead><tr>
+                                          <th>ROL</th><th>ESTADO</th>
+                                          </tr></thead>
+                                          <tbody><tr>
+                                          <td>
+                                          <p class="text-center border border-light fw-semibold fs-6">${rol}</p></td>
+                                          <td><p class="text-center border border-light fw-semibold fs-6" onclick="cambiarEstado(${notas[i].id})">${notas[i].estado} </p>
+                                          </td>
+                                          </tr>
+                                          </tbody>
+                                          </table>
+                                      </ol>
                                         
                                         <div class="widget-49-meeting-action" id="btnEditarNota">
                                             <a href="#" class="btn btn-sm btn-flash-border-primary"    >NOTE 
@@ -225,7 +233,7 @@ function cargarColorNotas(){
      
     }
     document.getElementById("root").innerHTML=body;
-    cargarModalNota()
+    cargarModalNota(rolMateria)
   }
 
   
