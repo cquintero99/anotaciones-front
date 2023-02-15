@@ -7,3 +7,12 @@ a {
     --bs-tooltip-bg: var(--bs-primary);
   }
 
+.menu{
+  padding: 0;
+  margin: 0;
+  
+}
+*{
+  padding: 0;
+  margin: 0;
+}

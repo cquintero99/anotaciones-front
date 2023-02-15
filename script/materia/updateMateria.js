@@ -37,12 +37,15 @@ async function updateMateria(id){
     let grupo=document.getElementById("selectGrupo");
     let textGrupo=grupo.options[grupo.selectedIndex].text
     let fecha = new Date()
+    let selectEstado=document.getElementById("selectEstado");
+    let textEstado=selectEstado.options[selectEstado.selectedIndex].text
     const newMateria={
         nombre,
         profesor,
         codigo,
         grupo: textGrupo,
-        fecha_registro:fecha
+        fecha_registro:fecha,
+        estado:textEstado
     }
 
     let token=localStorage.getItem("token")

@@ -1,3 +1,4 @@
+
  function iniciarSesion(){
     let email =document.getElementById("username").value
     let password=document.getElementById("password").value
@@ -22,6 +23,29 @@
 
 }
 
+
+
+async function verificoExisteCuenta(auth,email){
+    const result =await fetch("http://localhost:8088/usuarios/"+email+"/correo",)
+    .then(res=>res.json())
+    .then(data=>{
+        
+        if(data===true){
+            entrarCuenta(auth)
+        }else{
+            body=`<div class="alert alert-danger" role="alert">
+            <a href="#" class="alert-link">CUENTA NO ESTA REGISTRADA</a>
+         </div>`
+    document.getElementById("alertLogin").innerHTML=body;
+         setTimeout(()=>{ document.getElementById("alertLogin").innerHTML="";
+                    },4500)
+        }
+
+    })
+    .catch(error=>{
+        console.log(error)
+    })
+}
 async function entrarCuenta(auth){
     const result=await fetch('http://localhost:8088/login',{
         crossDomain:true,
@@ -64,32 +88,11 @@ async function entrarCuenta(auth){
     })
 }
 
-async function verificoExisteCuenta(auth,email){
-    const result =await fetch("http://localhost:8088/usuarios/"+email+"/correo",)
-    .then(res=>res.json())
-    .then(data=>{
-        
-        if(data===true){
-            entrarCuenta(auth)
-        }else{
-            body=`<div class="alert alert-danger" role="alert">
-            <a href="#" class="alert-link">CUENTA NO ESTA REGISTRADA</a>
-         </div>`
-    document.getElementById("alertLogin").innerHTML=body;
-         setTimeout(()=>{ document.getElementById("alertLogin").innerHTML="";
-                    },4500)
-        }
-
-    })
-    .catch(error=>{
-        console.log(error)
-    })
-}
-
 function online(){
     var auxtoken=localStorage.getItem("token")
     var id=JSON.parse(localStorage.getItem("data")).id
     if(auxtoken!==undefined && id!==undefined  ){
+        
         cargarMenu()
         listaMateria()
     }

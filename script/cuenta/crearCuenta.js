@@ -5,6 +5,10 @@ function newUser(){
     let correo=document.getElementById("correo").value
     let password=document.getElementById("password").value
     let fecha_registro=new Date()
+    let select=document.getElementById("selectGenero")
+    let genero=select.options[select.selectedIndex].text
+    
+    
 
     const user={
         nombre,
@@ -17,9 +21,11 @@ function newUser(){
             "id": 2,
             "nombre": "USER"
         },
-        estado:"ONLINE"
+        estado:"ONLINE",
+        genero
     }
-    saveUsuario(user)
+    //console.log(user)
+  saveUsuario(user)
 }
 
 async function saveUsuario(usuario){

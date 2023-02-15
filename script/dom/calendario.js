@@ -1,4 +1,17 @@
-function cargarCalendario(){
+async function allAnotaciones(){
+    let id=JSON.parse(localStorage.getItem("data")).id
+    let token=localStorage.getItem("token")
+    const result=await fetch('http://localhost:8088/usuarios/'+id+'/anotaciones',{
+        headers:{
+            "Authorization":"Bearer "+token
+        }
+    })
+    return result;
+}
+function cargarCalendarioNotas(filtro){
+    document.getElementById("perfil").innerHTML="";
+    document.getElementById("resumenMateria").innerHTML=""
+    document.getElementById("modal").innerHTML=""
     let body=`
     <div class="event-schedule-area-two bg-color pad100">
         <div class="container">
@@ -6,710 +19,63 @@ function cargarCalendario(){
                 <div class="col-lg-12">
                     <div class="section-title text-center">
                         <div class="title-text">
-                            <h2>Event Schedule</h2>
+                            <h3>NOTAS</h3>
+                         
+
+                            <p class="">
+                               <ul class="nav justify-content-center ">
+                            <li class="nav-item">
+                              <a class="nav-link fw-bold text-dark active" aria-current="page" href="#" onclick="cargarCalendarioNotas('activas')">ACTIVAS</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link fw-bold text-dark active" href="#" onclick="cargarCalendarioNotas('vencidas')">VENCIDAS</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link fw-bold text-dark active"  href="#" onclick="cargarCalendarioNotas('todas')" >TODAS</a>
+                            </li>
+                          </ul> </p>
                         </div>
-                        <p>
-                            In ludus latine mea, eos paulo quaestio an. Meis possit ea sit. Vidisse molestie<br />
-                            cum te, sea lorem instructior at.
-                        </p>
+                        
+                        
                     </div>
                 </div>
                 <!-- /.col end-->
             </div>
             <!-- row end-->
             <div class="row">
-                <div class="col-lg-12">
-                    <ul class="nav custom-tab" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active show" id="home-taThursday" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Day 1</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Day 2</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Day 3</a>
-                        </li>
-                        <li class="nav-item d-none d-lg-block">
-                            <a class="nav-link" id="sunday-tab" data-toggle="tab" href="#sunday" role="tab" aria-controls="sunday" aria-selected="false">Day 4</a>
-                        </li>
-                        <li class="nav-item mr-0 d-none d-lg-block">
-                            <a class="nav-link" id="monday-tab" data-toggle="tab" href="#monday" role="tab" aria-controls="monday" aria-selected="false">Day 5</a>
-                        </li>
-                    </ul>
+                <div class="col-lg-12 ">
+               
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade active show" id="home" role="tabpanel">
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="text-center" scope="col">Date</th>
-                                            <th scope="col">Speakers</th>
-                                            <th scope="col">Session</th>
-                                            <th scope="col">Venue</th>
-                                            <th class="text-center" scope="col">Venue</th>
+                                            <th class="text-center" scope="col">FECHA ENTREGA</th>
+                                            <th scope="col">CATEGORIA</th>
+                                            <th scope="col">DESCRIPCION</th>
+                                            <th scope="col">DATOS REGISTRO</th>
+                                            <th class="text-center" scope="col">ACCIONES</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr class="inner-box">
-                                            <th scope="row">
-                                                <div class="event-date">
-                                                    <span>16</span>
-                                                    <p>Novembar</p>
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div class="event-img">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="event-wrap">
-                                                    <h3><a href="#">Harman Kardon</a></h3>
-                                                    <div class="meta">
-                                                        <div class="organizers">
-                                                            <a href="#">Aslan Lingker</a>
-                                                        </div>
-                                                        <div class="categories">
-                                                            <a href="#">Inspire</a>
-                                                        </div>
-                                                        <div class="time">
-                                                            <span>05:35 AM - 08:00 AM 2h 25'</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="r-no">
-                                                    <span>Room B3</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="primary-btn">
-                                                    <a class="btn btn-primary" href="#">Read More</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="inner-box">
-                                            <th scope="row">
-                                                <div class="event-date">
-                                                    <span>20</span>
-                                                    <p>Novembar</p>
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div class="event-img">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="event-wrap">
-                                                    <h3><a href="#">Toni Duggan</a></h3>
-                                                    <div class="meta">
-                                                        <div class="organizers">
-                                                            <a href="#">Aslan Lingker</a>
-                                                        </div>
-                                                        <div class="categories">
-                                                            <a href="#">Inspire</a>
-                                                        </div>
-                                                        <div class="time">
-                                                            <span>05:35 AM - 08:00 AM 2h 25'</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="r-no">
-                                                    <span>Room D3</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="primary-btn">
-                                                    <a class="btn btn-primary" href="#">Read More</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="inner-box border-bottom-0">
-                                            <th scope="row">
-                                                <div class="event-date">
-                                                    <span>18</span>
-                                                    <p>Novembar</p>
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div class="event-img">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="event-wrap">
-                                                    <h3><a href="#">Billal Hossain</a></h3>
-                                                    <div class="meta">
-                                                        <div class="organizers">
-                                                            <a href="#">Aslan Lingker</a>
-                                                        </div>
-                                                        <div class="categories">
-                                                            <a href="#">Inspire</a>
-                                                        </div>
-                                                        <div class="time">
-                                                            <span>05:35 AM - 08:00 AM 2h 25'</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="r-no">
-                                                    <span>Room A3</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="primary-btn">
-                                                    <a class="btn btn-primary" href="#">Read More</a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                    <tbody id="listaNotas">
+                                      
+                                        
+
+                                       
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Speakers</th>
-                                            <th scope="col">Session</th>
-                                            <th scope="col">Venue</th>
-                                            <th scope="col">Venue</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="inner-box">
-                                            <th scope="row">
-                                                <div class="event-date">
-                                                    <span>16</span>
-                                                    <p>Novembar</p>
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div class="event-img">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="event-wrap">
-                                                    <h3><a href="#">Toni Duggan</a></h3>
-                                                    <div class="meta">
-                                                        <div class="organizers">
-                                                            <a href="#">Aslan Lingker</a>
-                                                        </div>
-                                                        <div class="categories">
-                                                            <a href="#">Inspire</a>
-                                                        </div>
-                                                        <div class="time">
-                                                            <span>05:35 AM - 08:00 AM 2h 25'</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="r-no">
-                                                    <span>Room B3</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="primary-btn">
-                                                    <a class="btn btn-primary" href="#">Read More</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="inner-box">
-                                            <th scope="row">
-                                                <div class="event-date">
-                                                    <span>16</span>
-                                                    <p>Novembar</p>
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div class="event-img">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="event-wrap">
-                                                    <h3><a href="#">Harman Kardon</a></h3>
-                                                    <div class="meta">
-                                                        <div class="organizers">
-                                                            <a href="#">Aslan Lingker</a>
-                                                        </div>
-                                                        <div class="categories">
-                                                            <a href="#">Inspire</a>
-                                                        </div>
-                                                        <div class="time">
-                                                            <span>05:35 AM - 08:00 AM 2h 25'</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="r-no">
-                                                    <span>Room B3</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="primary-btn">
-                                                    <a class="btn btn-primary" href="#">Read More</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="inner-box border-bottom-0">
-                                            <th scope="row">
-                                                <div class="event-date">
-                                                    <span>16</span>
-                                                    <p>Novembar</p>
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div class="event-img">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="event-wrap">
-                                                    <h3><a href="#">Billal Hossain</a></h3>
-                                                    <div class="meta">
-                                                        <div class="organizers">
-                                                            <a href="#">Aslan Lingker</a>
-                                                        </div>
-                                                        <div class="categories">
-                                                            <a href="#">Inspire</a>
-                                                        </div>
-                                                        <div class="time">
-                                                            <span>05:35 AM - 08:00 AM 2h 25'</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="r-no">
-                                                    <span>Room B3</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="primary-btn">
-                                                    <a class="btn btn-primary" href="#">Read More</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Speakers</th>
-                                            <th scope="col">Session</th>
-                                            <th scope="col">Venue</th>
-                                            <th scope="col">Venue</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="inner-box">
-                                            <th scope="row">
-                                                <div class="event-date">
-                                                    <span>16</span>
-                                                    <p>Novembar</p>
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div class="event-img">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="event-wrap">
-                                                    <h3><a href="#">Harman Kardon</a></h3>
-                                                    <div class="meta">
-                                                        <div class="organizers">
-                                                            <a href="#">Aslan Lingker</a>
-                                                        </div>
-                                                        <div class="categories">
-                                                            <a href="#">Inspire</a>
-                                                        </div>
-                                                        <div class="time">
-                                                            <span>05:35 AM - 08:00 AM 2h 25'</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="r-no">
-                                                    <span>Room B3</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="primary-btn">
-                                                    <a class="btn btn-primary" href="#">Read More</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="inner-box">
-                                            <th scope="row">
-                                                <div class="event-date">
-                                                    <span>16</span>
-                                                    <p>Novembar</p>
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div class="event-img">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="event-wrap">
-                                                    <h3><a href="#">Billal Hossain</a></h3>
-                                                    <div class="meta">
-                                                        <div class="organizers">
-                                                            <a href="#">Aslan Lingker</a>
-                                                        </div>
-                                                        <div class="categories">
-                                                            <a href="#">Inspire</a>
-                                                        </div>
-                                                        <div class="time">
-                                                            <span>05:35 AM - 08:00 AM 2h 25'</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="r-no">
-                                                    <span>Room B3</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="primary-btn">
-                                                    <a class="btn btn-primary" href="#">Read More</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="inner-box border-bottom-0">
-                                            <th scope="row">
-                                                <div class="event-date">
-                                                    <span>16</span>
-                                                    <p>Novembar</p>
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div class="event-img">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="event-wrap">
-                                                    <h3><a href="#">Toni Duggan</a></h3>
-                                                    <div class="meta">
-                                                        <div class="organizers">
-                                                            <a href="#">Aslan Lingker</a>
-                                                        </div>
-                                                        <div class="categories">
-                                                            <a href="#">Inspire</a>
-                                                        </div>
-                                                        <div class="time">
-                                                            <span>05:35 AM - 08:00 AM 2h 25'</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="r-no">
-                                                    <span>Room B3</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="primary-btn">
-                                                    <a class="btn btn-primary" href="#">Read More</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="sunday" role="tabpanel" aria-labelledby="sunday-tab">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Speakers</th>
-                                            <th scope="col">Session</th>
-                                            <th scope="col">Venue</th>
-                                            <th scope="col">Venue</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="inner-box">
-                                            <th scope="row">
-                                                <div class="event-date">
-                                                    <span>16</span>
-                                                    <p>Novembar</p>
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div class="event-img">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="event-wrap">
-                                                    <h3><a href="#">Toni Duggan</a></h3>
-                                                    <div class="meta">
-                                                        <div class="organizers">
-                                                            <a href="#">Aslan Lingker</a>
-                                                        </div>
-                                                        <div class="categories">
-                                                            <a href="#">Inspire</a>
-                                                        </div>
-                                                        <div class="time">
-                                                            <span>05:35 AM - 08:00 AM 2h 25'</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="r-no">
-                                                    <span>Room B3</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="primary-btn">
-                                                    <a class="btn btn-primary" href="#">Read More</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="inner-box">
-                                            <th scope="row">
-                                                <div class="event-date">
-                                                    <span>16</span>
-                                                    <p>Novembar</p>
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div class="event-img">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="event-wrap">
-                                                    <h3><a href="#">Harman Kardon</a></h3>
-                                                    <div class="meta">
-                                                        <div class="organizers">
-                                                            <a href="#">Aslan Lingker</a>
-                                                        </div>
-                                                        <div class="categories">
-                                                            <a href="#">Inspire</a>
-                                                        </div>
-                                                        <div class="time">
-                                                            <span>05:35 AM - 08:00 AM 2h 25'</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="r-no">
-                                                    <span>Room B3</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="primary-btn">
-                                                    <a class="btn btn-primary" href="#">Read More</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="inner-box border-bottom-0">
-                                            <th scope="row">
-                                                <div class="event-date">
-                                                    <span>16</span>
-                                                    <p>Novembar</p>
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div class="event-img">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="event-wrap">
-                                                    <h3><a href="#">Billal Hossain</a></h3>
-                                                    <div class="meta">
-                                                        <div class="organizers">
-                                                            <a href="#">Aslan Lingker</a>
-                                                        </div>
-                                                        <div class="categories">
-                                                            <a href="#">Inspire</a>
-                                                        </div>
-                                                        <div class="time">
-                                                            <span>05:35 AM - 08:00 AM 2h 25'</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="r-no">
-                                                    <span>Room B3</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="primary-btn">
-                                                    <a class="btn btn-primary" href="#">Read More</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="monday" role="tabpanel" aria-labelledby="monday-tab">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Speakers</th>
-                                            <th scope="col">Session</th>
-                                            <th scope="col">Venue</th>
-                                            <th scope="col">Venue</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="inner-box">
-                                            <th scope="row">
-                                                <div class="event-date">
-                                                    <span>16</span>
-                                                    <p>Novembar</p>
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div class="event-img">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="event-wrap">
-                                                    <h3><a href="#">Harman Kardon</a></h3>
-                                                    <div class="meta">
-                                                        <div class="organizers">
-                                                            <a href="#">Aslan Lingker</a>
-                                                        </div>
-                                                        <div class="categories">
-                                                            <a href="#">Inspire</a>
-                                                        </div>
-                                                        <div class="time">
-                                                            <span>05:35 AM - 08:00 AM 2h 25'</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="r-no">
-                                                    <span>Room B3</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="primary-btn">
-                                                    <a class="btn btn-primary" href="#">Read More</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="inner-box">
-                                            <th scope="row">
-                                                <div class="event-date">
-                                                    <span>18</span>
-                                                    <p>Novembar</p>
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div class="event-img">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="event-wrap">
-                                                    <h3><a href="#">Toni Duggan</a></h3>
-                                                    <div class="meta">
-                                                        <div class="organizers">
-                                                            <a href="#">Aslan Lingker</a>
-                                                        </div>
-                                                        <div class="categories">
-                                                            <a href="#">Inspire</a>
-                                                        </div>
-                                                        <div class="time">
-                                                            <span>05:35 AM - 08:00 AM 2h 25'</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="r-no">
-                                                    <span>Room B3</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="primary-btn">
-                                                    <a class="btn btn-primary" href="#">Read More</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="inner-box border-bottom-0">
-                                            <th scope="row">
-                                                <div class="event-date">
-                                                    <span>20</span>
-                                                    <p>Novembar</p>
-                                                </div>
-                                            </th>
-                                            <td>
-                                                <div class="event-img">
-                                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" />
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="event-wrap">
-                                                    <h3><a href="#">Billal Hossain</a></h3>
-                                                    <div class="meta">
-                                                        <div class="organizers">
-                                                            <a href="#">Aslan Lingker</a>
-                                                        </div>
-                                                        <div class="categories">
-                                                            <a href="#">Inspire</a>
-                                                        </div>
-                                                        <div class="time">
-                                                            <span>05:35 AM - 08:00 AM 2h 25'</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="r-no">
-                                                    <span>Room B3</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="primary-btn">
-                                                    <a class="btn btn-primary" href="#">Read More</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                       
+
+
+                        
                     </div>
                     <div class="primary-btn text-center">
-                        <a href="#" class="btn btn-primary">Download Schedule</a>
+                        <a href="#" class="btn text-dark fw-bold">CATEGORIAS</a>
+                    </div>
+                    <div id="homeCategorias">
                     </div>
                 </div>
                 <!-- /col end-->
@@ -717,5 +83,221 @@ function cargarCalendario(){
             <!-- /row end-->
         </div>
     </div>`
-    document.getElementById("calendario").innerHTML=body;
+    document.getElementById("root").innerHTML=body;
+    cargarTodasNotas(filtro)
+    homeCategoriaNotas()
+}
+
+function homeCategoriaNotas(){
+    cargarCategorias()
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data)
+        let body=` <ul class="nav custom-tab" id="myTab" role="tablist" id="homeCategorias">
+                      
+                        
+        `
+        for (let i = 0; i < data.length; i++) {
+            
+
+            body+=` 
+            <li class="nav-item">
+            <a class="nav-link active show" id="${data[i].id}" data-toggle="tab" 
+            href="#" role="tab" aria-controls="home" aria-selected="true">${data[i].nombre}</a>
+        </li>
+       `
+            
+        }
+        body+=`</ul>`
+        document.getElementById("homeCategorias").innerHTML=body;
+
+    })
+    .catch(err=>console.log(err))
+   
+}
+function compare(a, b) {
+    // Use toUpperCase() to ignore character casing
+    let fecha=new Date(a.fecha_entrega)
+    let fecha2=new Date(b.fecha_entrega)
+//console.log("FECHA: DIA "+fecha.getUTCDate()+"  fecha:"+fecha)
+
+    const bandA = fecha;
+    const bandB = fecha2;
+  
+    let comparison = 0;
+    if (bandA > bandB) {
+      comparison = 1;
+    } else if (bandA < bandB) {
+      comparison = -1;
+    }
+    return comparison;
+  }
+
+
+function cargarTodasNotas(filtro){
+
+    allAnotaciones()
+    .then(res=>res.json())
+    .then(data=>{
+         verHomeNotas(data,filtro,"listaNotas")
+    })
+   
+}
+
+function verHomeNotas(data,filtro,bodyHtml){
+    
+    const meses=["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"]
+    const colorNotas=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-dark","l-bg-cyan","l-bg-green","l-bg-orange","l-bg-cyan2"]
+    
+      //  console.log(data)
+        let body=""
+        for (let i = 0; i <data.length ; i++) {
+            data.sort(compare)
+          
+      var fecha=new Date(data[i].fecha_entrega)
+      var fechaRegistro=data[i].fecha_registro.substr(0,10);
+      //console.log("FECHA: DIA "+fecha.getUTCDate()+"  fecha:"+fecha)
+      let dia=Number(fecha.getUTCDate());
+      let mes=Number(fecha.getUTCMonth())
+      let hoy=new Date()
+      let diaHoy=Number(hoy.getUTCDate());
+      let mesHoy=Number(hoy.getUTCMonth());
+       if(fecha>hoy && filtro==="activas" || dia===diaHoy && mes===mesHoy ){
+        console.log("FECHA: DIA "+fecha+"  fecha:"+hoy)
+        body+=`  <tr class="inner-box ">
+        <th scope="row" class="${colorNotas[cargarColorNotas()]}">
+            <div class="event-date fw-bold text-light ">
+                <span>${dia}</span>
+                <p>${meses[mes]}</p>
+            </div>
+        </th>
+        <td>
+            <div  class="event-img" onclick="listaMateria()">
+                <a href="#" class="text-dark"><h5>${data[i].categoria.nombre}</h5></a>
+            </div>
+        </td>
+        <td>
+            <div class="event-wrap">
+                <h3><a href="#">${data[i].titulo}</a></h3>
+                <div class="meta">
+                    <div class="organizers">
+                        <a href="#">${data[i].descripcion}</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+        <td>
+        <div id="alertCopiar${data[i].materia_id}"></div>
+        <div class="categories">
+        <p class="btn" onclick="copiarId(${data[i].materia_id})">Materia: ${data[i].materia_id}</p>
+         </div>
+        <div class="time">
+       
+        <a class="text-center text-dark fw-bold" href="#">${fechaRegistro}</a>
+       
+        </div>
+
+        </td>
+        <td>
+            <div class="primary-btn">
+                
+                <a class="text-center text-danger fw-bold" href="#" onclick="eliminarNota(${data[i].id}, ${data[i].materia_id})">ELIMINAR</a>
+            </div>
+        </td>
+    </tr>`
+    
+        }else if(filtro==="vencidas" && fecha<hoy){
+            
+            body+=`  <tr class="inner-box ">
+            <th scope="row" class="${colorNotas[random()]}">
+                <div class="event-date fw-bold text-light ">
+                    <span>${dia}</span>
+                    <p>${meses[mes]}</p>
+                </div>
+            </th>
+            <td>
+                <div  class="event-img" onclick="listaMateria()">
+                    <a href="#" class="text-dark"><h5>${data[i].categoria.nombre}</h5></a>
+                </div>
+            </td>
+            <td>
+                <div class="event-wrap">
+                    <h3><a href="#">${data[i].titulo}</a></h3>
+                    <div class="meta">
+                        <div class="organizers">
+                            <a href="#">${data[i].descripcion}</a>
+                        </div>
+                       
+                        
+                    </div>
+                </div>
+            </td>
+            <td>
+            <div id="alertCopiar${data[i].materia_id}"></div>
+            <div class="categories">
+            <p class="btn" onclick="copiarId(${data[i].materia_id})">Materia: ${data[i].materia_id}</p>
+             </div>
+            <div class="time">
+           
+            <a class="text-center text-dark fw-bold" href="#">${fechaRegistro}</a>
+           
+            </div>
+            </td>
+            <td>
+                <div class="primary-btn">
+                <a class="text-center text-danger fw-bold" href="#" onclick="eliminarNota(${data[i].id}, ${data[i].materia_id})">ELIMINAR</a>
+                </div>
+            </td>
+        </tr>`
+    
+            }else if(filtro==="todas"){
+                
+            body+=`  <tr class="inner-box ">
+            <th scope="row" class="${colorNotas[random()]}">
+                <div class="event-date fw-bold text-light ">
+                    <span>${dia}</span>
+                    <p>${meses[mes]}</p>
+                </div>
+            </th>
+            <td>
+                <div  class="event-img" onclick="listaMateria()">
+                    <a href="#" class="text-dark"><h5>${data[i].categoria.nombre}</h5></a>
+                </div>
+            </td>
+            <td>
+                <div class="event-wrap">
+                    <h3><a href="#">${data[i].titulo}</a></h3>
+                    <div class="meta">
+                        <div class="organizers">
+                            <a href="#">${data[i].descripcion}</a>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </td>
+            <td>
+            <div id="alertCopiar${data[i].materia_id}"></div>
+        <div class="categories">
+        <p class="btn" onclick="copiarId(${data[i].materia_id})">ID Materia: ${data[i].materia_id}</p>
+         </div>
+        <div class="time">
+       
+        <a class="text-center text-dark fw-bold" href="#">${fechaRegistro}</a>
+       
+        </div>
+            </td>
+            <td>
+                <div class="primary-btn">
+                <a class="text-center text-danger fw-bold" href="#" onclick="eliminarNota(${data[i].id}, ${data[i].materia_id})">ELIMINAR</a>
+                </div>
+            </td>
+        </tr>`
+            }
+
+
+        }
+        
+        document.getElementById(bodyHtml).innerHTML=body;
 }

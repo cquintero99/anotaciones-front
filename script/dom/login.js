@@ -63,8 +63,10 @@ function formularioRegistro(){
                         <div class="row">
                             <input type="text" name="apellido" id="apellido" class="form__input" placeholder="Apellido">
                         </div>
+
                         
                         <div class="row">
+                        
                         <label for="remember_me">Fecha Nacimiento</label>
                         <input type="date" name="fechaNacimiento" id="fechaNacimiento" class="form__input " >
                         </div>
@@ -76,7 +78,17 @@ function formularioRegistro(){
                             <span class="fa fa-lock"></span> 
                             <input type="password" name="password" id="password" class="form__input" placeholder="Password">
                         </div>
-                        <div class="row">
+                                <div class="row form-floating">
+                                <select class="form-select" id="selectGenero" aria-label="Floating label select example">
+                                    
+                                    <option value="1" selected>Masculino</option>
+                                    <option value="2">Femenino</option>
+                                    <option value="3">No responder</option>
+                                </select>
+                                <label for="floatingSelect">Seleccione su genero</label>
+                                </div>
+
+                        <div class="row p-3">
                             <input type="checkbox" name="remember_me" id="remember_me" class="">
                             <label for="remember_me">Acepto terminos y condiciones</label>
                         </div>

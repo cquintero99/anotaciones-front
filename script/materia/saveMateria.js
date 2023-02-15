@@ -7,6 +7,8 @@
     let textGrupo=grupo.options[grupo.selectedIndex].text
     let fecha = new Date()
     let id=JSON.parse(localStorage.getItem("data")).id
+    let estado=document.getElementById("selectEstado");
+    let textEstado=estado.options[estado.selectedIndex].text
     const materia={
         //Obtener id Usuario del token
         usuario_id:id,
@@ -14,10 +16,11 @@
         profesor,
         codigo,
         grupo: textGrupo,
-        fecha_registro:fecha
+        fecha_registro:fecha,
+        estado:textEstado
     }
     
-
+    console.log(materia)
     registroMateria(materia)
 
 }

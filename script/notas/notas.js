@@ -1,6 +1,5 @@
 async function listaNotas(id,rolMateria) {
     localStorage.setItem("idMateria",id)
-    console.log(rolMateria)
     resumenMateria(id)
     let token=localStorage.getItem("token")
     
@@ -80,7 +79,7 @@ function cargarColorNotas(){
         }
         body += `
           
-        <div class=" col-md-4 col-sm-6">
+        <div class=" col-md-6 col-sm-6">
         
            <div class="card  card-margin ${colorNotas[cargarColorNotas()]} "  style="max-width: 840px;" >
            
@@ -114,21 +113,28 @@ function cargarColorNotas(){
                                           
                                             <ol class="widget-49-meeting-points">
                                                 <li class="widget-49-meeting-item "><span>DESCRIPCION:</span></li>
-                                                <textarea class="form-control fw-semibold " id="exampleFormControlTextarea1" rows="3">${notas[i].descripcion}
+                                                <textarea class="form-control fw-semibold " id="exampleFormControlTextarea1" rows="6">${notas[i].descripcion}
                                                 </textarea>
                                                 
                                                 
-                                                <li class="widget-49-meeting-item" ><span >ESTADO:  </span></li>
-                                                <p class="text-center border border-light fw-semibold fs-6" onclick="cambiarEstado(${notas[i].id})">${notas[i].estado} </p>
-                                              
                                                 
                                                 <li class="widget-49-meeting-item"><span>ARCHIVOS</span></li>
                                                 <div class="mb-3">
                                                 <p class="text-center border border-light fw-semibold fs-6">PDF, JPG , EXEL , WORD </p>
                                                 <input class="form-control" type="file" id="formFile">
                                                 </div>
-                                                <li class="widget-49-meeting-item"><span>ROL</span></li>
-                                                <p class="text-center border border-light fw-semibold fs-6">${rol}</p>
+                                                <table class="table  text-light table-borderless">
+                                                <thead><tr>
+                                                <th>ROL</th><th>ESTADO</th>
+                                                </tr></thead>
+                                                <tbody><tr>
+                                                <td>
+                                                <p class="text-center border border-light fw-semibold fs-6">${rol}</p></td>
+                                                <td><p class="text-center border border-light fw-semibold fs-6" onclick="cambiarEstado(${notas[i].id})">${notas[i].estado} </p>
+                                                </td>
+                                                </tr>
+                                                </tbody>
+                                                </table>
                                             </ol>
                                             
                                             <div class="widget-49-meeting-action" id="btnEditarNota">
@@ -150,7 +156,7 @@ function cargarColorNotas(){
         rol="ESPECTADOR"
         body += `
           
-        <div class=" col-md-4 col-sm-6">
+        <div class=" col-md-6 col-sm-6">
         
            <div class="card  card-margin ${colorNotas[cargarColorNotas()]} "  style="max-width: 840px;" >
            

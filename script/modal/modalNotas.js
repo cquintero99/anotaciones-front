@@ -5,7 +5,7 @@ function cargarModalNota(){
       <div class="buttons p-3">
             <div class="container">
            <a href="#" class="btnR effect04" data-sm-link-text="CLICK" target="_blank"
-           data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="cargarCategorias()" ><span class="text-">REGISTRAR NOTA</span></a>
+           data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="mostrarCategorias()" ><span class="text-">REGISTRAR NOTA</span></a>
          </div>
          </div>
       
@@ -23,7 +23,7 @@ function cargarModalNota(){
             <label for="titulo" class="form-label">Titulo </label>
             <input type="text" id="titulo" class="form-control">
             <label for="descripcion" class="form-label">Descripcion</label>
-            <textarea class="form-control" id="descripcion" rows="3"></textarea>
+            <textarea class="form-control" id="descripcion" rows="6"></textarea>
             <label for="fecha" class="form-label">Fecha Entrega </label>
             <input type="date" id="fecha" class="form-control">
             <label for="categoria" class="form-label">Categoria </label>

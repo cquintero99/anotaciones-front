@@ -75,7 +75,6 @@ async function updateNota(id){
     })
     .then(response=>response.json())
     .then(data=>{
-        console.log(data)
         Swal.fire({
     
             icon: 'success',

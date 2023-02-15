@@ -5,14 +5,15 @@ async function cargarCategorias(){
             "Authorization":"Bearer "+token
         }
     })
-    .then(response=>response.json())
-    .then(data=>mostrarCategorias(data))
-    .catch(error=>console.log(error))
+    
+    return resultCategoria;
 }
 
-function mostrarCategorias(categoria){
-
-    body=``
+function mostrarCategorias(){
+    cargarCategorias()
+    .then(response=>response.json())
+    .then(categoria=>{
+     let   body=``
 
     for (let i = 0; i < categoria.length; i++) {
         body+=
@@ -21,4 +22,9 @@ function mostrarCategorias(categoria){
         
     }
     document.getElementById("selectCategorias").innerHTML=body;
+
+    })
+    .catch(error=>console.log(error))
+
+    
 }

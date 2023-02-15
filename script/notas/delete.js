@@ -1,5 +1,5 @@
 
- function eliminarNota(id,idMateria){
+ function eliminarNota(id,idMateria,interfaz){
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -9,12 +9,12 @@
     })
     
     swalWithBootstrapButtons.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: 'Eliminar Anotacion?',
+      text: "no se podra recuperar la informacion de la nota!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
+      confirmButtonText: 'Si, Eliminar!',
+      cancelButtonText: 'Cancelar!',
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
@@ -28,8 +28,8 @@
         result.dismiss === Swal.DismissReason.cancel
       ) {
         swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Your imaginary file is safe :)',
+          'Cancelar',
+          'No se elimino nada :)',
           'error'
         )
       }

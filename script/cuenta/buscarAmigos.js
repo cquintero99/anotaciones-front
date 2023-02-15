@@ -68,7 +68,7 @@ async function buscarMisSeguidores(id){
                     let idEntitiSeguidor=idSeguidor[miArreglo.indexOf(data[i].id)];
                     body+=` 
                     <li class="widget-49-meeting-item p-3 "><span>
-                    <div class="card box8  card-margin ${colorNotas[random()]} "  style="max-width: 340px;"  >
+                    <div class="card box8  card-margin ${colorNotas[cargarColor()]} "  style="max-width: 340px;"  >
                     <h3 class="title">${nombre}</h3>
                        <a href="#"  class="text-light p-1" >    
                        <p class="text-center fw-bold p-3">AMIGO</p> </a>

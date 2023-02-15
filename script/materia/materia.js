@@ -4,6 +4,7 @@ async function listaMateria() {
    // location.replace('https://code.tutsplus.com');
  //  var stateObj = { foo: "materias" };
 //history.pushState(stateObj, "page 2", "materias.html");
+    
     document.getElementById("resumenMateria").innerHTML=""
     document.getElementById("login").innerHTML=""
     localStorage.setItem("idMateria","")
@@ -30,7 +31,7 @@ function copiarId(id){
   
   .then(()=>{
     console.log("copiado")
-    document.getElementById("alertCopiar"+id).innerHTML="<p> ID COPIADO</p > "
+    document.getElementById("alertCopiar"+id).innerHTML=`<p class="text-success fw-bold"> ID COPIADO</p >`
     setTimeout(()=>{
       
     document.getElementById("alertCopiar"+id).innerHTML=""
@@ -81,7 +82,7 @@ function cargarMateria(data) {
     let nombre=data[i].materia.nombre;
     
     if(nombre.length>=15){
-      nombre=nombre.substr(0,15)+"-"
+      nombre=nombre.substr(0,20)+"-"
     }
     
     //console.log("USER: "+idUsuario+" MATERIA USER : "+data[i].usuario_id+" NAME:"+nombre)
@@ -89,7 +90,7 @@ function cargarMateria(data) {
       rol="Creador"
       body += ` 
     
-      <div class="col-md-6 col-sm-6 content-card">
+      <div class="col-md-6 col-sm-6 content-card hover-4">
           
           <div class=" card-big-shadow" style="max-width: 540px;">
               
@@ -106,8 +107,21 @@ function cargarMateria(data) {
                                                 <h6 class="category">${data[i].materia.codigo} - ${data[i].materia.grupo}</h6>
                                                 <p class="description">Docente: </p>
                                                 <p class="description">${data[i].materia.profesor}</p>
-                                                <p>${rol}</p>
-                                                <p class="user-select-all fw-bold" onclick="copiarId(${data[i].materia.id})"> ID: ${data[i].materia.id}</p>
+
+                                                <table class="table  text-light table-borderless">
+                                                <thead><tr>
+                                                <th>ROL</th><th>ID</th><th>ESTADO</th>
+                                                </tr></thead>
+                                                <tbody><tr>
+                                                <td><p>${rol}</p></td>
+                                                <td><p class="text-light btn user-select-all fw-bold" onclick="copiarId(${data[i].materia.id})"> ${data[i].materia.id}</p></td>
+                                                <td><p>${data[i].materia.estado}</p></td>
+                                                <tr></tbody>
+                                                </table>
+                                              
+                                                
+                                                
+                                                
                                                 <div id="alertCopiar${data[i].materia.id}"></div>
                                         </div>
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -152,7 +166,7 @@ function cargarMateria(data) {
       rol="Invitado"
       body += ` 
     
-      <div class="col-md-6 col-sm-6 content-card">
+      <div class="col-md-6 col-sm-6 content-card hover-4">
           
           <div class="card-big-shadow" style="max-width: 540px;">
               
@@ -169,8 +183,16 @@ function cargarMateria(data) {
                                                 <h6 class="category">${data[i].materia.codigo} - ${data[i].materia.grupo}</h6>
                                                 <p class="description">Docente: </p>
                                                 <p class="description">${data[i].materia.profesor}</p>
-                                                <p>${rol}</p>
-                                                <p class="user-select-all fw-bold" onclick="copiarId(${data[i].materia.id})"> ID: ${data[i].materia.id}</p>
+                                                <table class="table  text-light table-borderless">
+                                                <thead><tr>
+                                                <th>ROL</th><th>ID</th><th>ESTADO</th>
+                                                </tr></thead>
+                                                <tbody><tr>
+                                                <td><p>${rol}</p></td>
+                                                <td><p  class="text-light btn user-select-all fw-bold" onclick="copiarId(${data[i].materia.id})"> ${data[i].materia.id}</p></td>
+                                                <td><p>${data[i].materia.estado}</p></td>
+                                                <tr></tbody>
+                                                </table>
                                                 <div id="alertCopiar${data[i].materia.id}"></div>
                                                 
                                         </div>

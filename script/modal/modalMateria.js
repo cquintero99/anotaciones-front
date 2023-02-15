@@ -3,7 +3,7 @@ function cargarModalMateria(){
   const colorNotas=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-dark","l-bg-cyan","l-bg-green","l-bg-orange","l-bg-cyan2"]
      
     body=`
-    <nav class="navbar  text-bg-light">
+    <nav class="navbar  text-bg-light" style="background-color: #FFFFFF;">
   <div class="container-fluid">
   
   <a href="#"  style="max-width: 240px;" class= "card  card-margin ${colorNotas[random()]}  text-light p-3 text-center fw-bold" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" >    
@@ -60,8 +60,8 @@ data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="nombreBoton"><span>R
        <input type="number" id="codigo" class="form-control" required>
        <label for="codigo" class="form-label">Grupo *</label>
        <select class="form-select" aria-label="Default select example" id="selectGrupo" required>
-           <option selected>Selecione un grupo</option>
-           <option value="A">A</option>
+           <option >Selecione un grupo</option>
+           <option value="A" selected>A</option>
            <option value="B">B</option>
            <option value="C">C</option>
            <option value="D">D</option>
@@ -70,6 +70,14 @@ data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="nombreBoton"><span>R
          </select>
        <label for="nombreMateriaProfesor" class="form-label">Docente</label>
        <input type="text" id="nombreMateriaProfesor" class="form-control">
+       <label for="codigo" class="form-label">Estado *</label>
+       <select class="form-select" aria-label="Default select example" id="selectEstado" required>
+           
+           <option value="1" selected>PUBLICA</option>
+           <option value="2">PRIVADA</option>
+           
+
+         </select>
 
        
    </div>
