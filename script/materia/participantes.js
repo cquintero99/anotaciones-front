@@ -9,7 +9,8 @@ async function participantes(id){
     return resul;
 }
 
-function verParticipantes(id){
+
+async function verParticipantes(id){
     participantes(id)
     .then(res=>res.json())
     .then(data=>{
@@ -39,6 +40,9 @@ function verParticipantes(id){
     
         
         document.getElementById("participantesMateria").innerHTML=body;
+    })
+    .catch(err=>{
+        console.log(err)
     })
 }
 

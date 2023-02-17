@@ -11,7 +11,7 @@ function cargarFooter(id){
       <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
         <!-- Left -->
         <div class="me-5 d-none d-lg-block">
-          <span>Get connected with us on social networks:</span>
+          <span>Redes Sociales :</span>
         </div>
         <!-- Left -->
     
@@ -32,7 +32,7 @@ function cargarFooter(id){
           <a href="" class="me-4 link-secondary">
             <i class="fab fa-linkedin"></i>
           </a>
-          <a href="" class="me-4 link-secondary">
+          <a href="https://github.com/cquintero99" class="me-4 link-secondary">
             <i class="fab fa-github"></i>
           </a>
         </div>
@@ -49,11 +49,11 @@ function cargarFooter(id){
             <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
               <!-- Content -->
               <h6 class="text-uppercase fw-bold mb-4">
-                <i class="fas fa-gem me-3 text-secondary"></i>Company name
+                <i class="fas fa-gem me-3 text-secondary"></i>My Notebook
               </h6>
               <p>
-                Here you can use rows and columns to organize your footer content. Lorem ipsum
-                dolor sit amet, consectetur adipisicing elit.
+                El sitio permite registrar Materias para guardar informacion detalla de algun evento o recordatorio importante
+                ,Tambien puedes agregar a tus amigos e invitarlos a tus materias.
               </p>
             </div>
             <!-- Grid column -->
@@ -62,19 +62,19 @@ function cargarFooter(id){
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
               <!-- Links -->
               <h6 class="text-uppercase fw-bold mb-4">
-                Products
+                Tecnologias Frontend
               </h6>
               <p>
-                <a href="#!" class="text-reset">Angular</a>
+                <a href="#!" class="text-reset">Boopstrap</a>
               </p>
               <p>
-                <a href="#!" class="text-reset">React</a>
+                <a href="#!" class="text-reset">JavaScript</a>
               </p>
               <p>
-                <a href="#!" class="text-reset">Vue</a>
+                <a href="#!" class="text-reset">CSS</a>
               </p>
               <p>
-                <a href="#!" class="text-reset">Laravel</a>
+                <a href="#!" class="text-reset">HTML5</a>
               </p>
             </div>
             <!-- Grid column -->
@@ -83,19 +83,19 @@ function cargarFooter(id){
             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
               <!-- Links -->
               <h6 class="text-uppercase fw-bold mb-4">
-                Useful links
+                Tecnologias Backend
               </h6>
               <p>
-                <a href="#!" class="text-reset">Pricing</a>
+                <a href="#!" class="text-reset">Spring Boot</a>
               </p>
               <p>
-                <a href="#!" class="text-reset">Settings</a>
+                <a href="#!" class="text-reset">JWT</a>
               </p>
               <p>
-                <a href="#!" class="text-reset">Orders</a>
+                <a href="#!" class="text-reset">MYSQL</a>
               </p>
               <p>
-                <a href="#!" class="text-reset">Help</a>
+                <a href="#!" class="text-reset">Java</a>
               </p>
             </div>
             <!-- Grid column -->
@@ -121,8 +121,8 @@ function cargarFooter(id){
     
       <!-- Copyright -->
       <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
-        © 2021 Copyright:
-        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        © 2023 Copyright:
+        <a class="text-reset fw-bold" href="https://github.com/cquintero99?tab=repositories">CQUINTERO99</a>
       </div>
       <!-- Copyright -->
     </footer>
