@@ -1,7 +1,6 @@
 async function listaNotas(id,rolMateria) {
     localStorage.setItem("idMateria",id)
     resumenMateria(id)
-    verParticipantes(id)
     let token=localStorage.getItem("token")
     
     const allNotas = await fetch("http://localhost:8088/materia/" + id + "/anotaciones",{
@@ -10,7 +9,7 @@ async function listaNotas(id,rolMateria) {
     }
     })
       .then((response) => response.json())
-      .then((notas) => {cargarNotas(notas,rolMateria)
+      .then((notas) => {cargarNotas(notas,rolMateria,id)
         
     })
       .catch((arr) => console.log(arr));
@@ -29,9 +28,11 @@ function cargarColorNotas(){
 }
 
 
-
-  function cargarNotas(notas,rolMateria) {
+const colorNotas=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-dark","l-bg-cyan","l-bg-green","l-bg-orange","l-bg-cyan2"]
+      
+  function cargarNotas(notas,rolMateria,idMateria) {
     let body = "";
+   
     if(notas.length===0){
       body=`<div class="col align-self-center p-5">
       <div class="cardR   l-bg-orange" style="max-width: 1200px;">
@@ -61,8 +62,8 @@ function cargarColorNotas(){
     }
 
     for (let i =notas.length-1; i >=0 ; i--) {
-      const colorNotas=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-dark","l-bg-cyan","l-bg-green","l-bg-orange","l-bg-cyan2"]
-      const meses=["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"]
+
+    const meses=["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"]
       const colorFecha=["primary", "success","info", "warning", "danger",  "dark",  "base", ]
       var fecha=new Date(notas[i].fecha_entrega)
       //console.log("FECHA: DIA "+fecha.getUTCDate()+"  fecha:"+fecha)
@@ -70,6 +71,7 @@ function cargarColorNotas(){
       let mes=Number(fecha.getUTCMonth())
       let rol="";
       let id=JSON.parse(localStorage.getItem("data")).id
+      
       if(id===notas[i].usuario_id || rolMateria==="Creador" ){
         //console.log(rolMateria)
         if(rolMateria==="Creador"){
@@ -232,8 +234,42 @@ function cargarColorNotas(){
       }
      
     }
+    body+=`     <div class="col-md-12 col-sm-12   ">
+    <div class="cardR  ${colorNotas[cargarColorNotas()]}" >
+        <div class="card-statistic-3 ">
+            <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
+            <div class="mb-4">
+                <h5 class="card-title mb-0">Integrantes de la Materia</h5>
+            </div>
+            <div class="row align-items-center mb-2 d-flex">
+                <div class="col overflow-scroll " >
+                <table class="table text-light ">
+                <thead>
+                <tr>
+                
+                <th>NOMBRE</th>
+                <th>APELLIDO</th>
+                <th>ROL</th>
+                <th>ACCION</th>
+                
+                </tr>
+                </thead>
+                <tbody id="participantesMateria">
+              
+                </tbody>
+                </table>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>`
     document.getElementById("root").innerHTML=body;
     cargarModalNota(rolMateria)
+    
+    verParticipantes(idMateria)
   }
 
   

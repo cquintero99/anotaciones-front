@@ -15,7 +15,7 @@ function mostrarAmigos(){
     buscarMisSeguidores()
     .then(res=>res.json())
     .then(data=>{
-        let body=`<h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>${data.length} - AMIGOS </h6>
+        let body=`<h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>   ( ${data.length} ) - Amigos</h6>
         `
         for (let i = 0; i < data.length; i++) {
            body+=`<p class="fw-bold"><small>${data[i].seguidor_id.nombre}</small></p>
@@ -35,7 +35,7 @@ function mostrarSeguidores(){
     cargarSeguidores()
     .then(res=>res.json())
     .then(data=>{
-        let body=`<h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>${data.length} - SEGUIDORES </h6>
+        let body=`<h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i> ( ${data.length} ) - Seguidores </h6>
         `
         for (let i = 0; i < data.length; i++) {
            body+=`<p class="fw-bold"><small>${data[i].usuario_id.nombre}</small></p>

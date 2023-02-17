@@ -103,20 +103,55 @@ function cargarPerfil(){
  
                <div class="row gutters-sm">
                  <div class="col-sm-6 mb-3 ">
-                   <div class="card h-100"  style="max-width: 540px;">
+                 
+                 <div class="accordion accordion-flush" id="accordionFlushAmigos">
+                 <div class="accordion-item">
+                   <h2 class="accordion-header" id="flush-headingOneAmigos">
+                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#listaAmigos" aria-expanded="false" aria-controls="flush-collapseOne">
+                       LISTA AMIGOS
+                     </button>
+                   </h2>
+                   <div id="listaAmigos" class="accordion-collapse collapse" aria-labelledby="flush-headingOneAmigos" data-bs-parent="#accordionFlushAmigos">
+                     <div class="accordion-body">
+                     <div class="card h-100"  style="max-width: 540px;">
                      <div class="card-body" id="perfilAmigos">
                      
                        
                      </div>
+                     </div>
+                     </div>
+
                    </div>
                  </div>
+                 </div>
+                   
+
+                 </div>
                  <div class="col-sm-6 mb-3 ">
-                   <div class="card h-100"  style="max-width: 540px;">
+
+                 <div class="accordion accordion-flush" id="accordionFlushSeguidores">
+                 <div class="accordion-item">
+                   <h2 class="accordion-header" id="flush-headingOneSeguidores">
+                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#listaSeguidores" aria-expanded="false" aria-controls="flush-collapseOne">
+                       LISTA SEGUIDORES
+                     </button>
+                   </h2>
+                   <div id="listaSeguidores" class="accordion-collapse collapse" aria-labelledby="flush-headingOneSeguidores" data-bs-parent="#accordionFlushSeguidores">
+                     <div class="accordion-body">
+                     <div class="card h-100"  style="max-width: 540px;">
 
                      <div class="card-body" id="perfilSeguidores">
                        
                      </div>
                    </div>
+                     </div>
+
+                   </div>
+                 </div>
+                 </div>
+
+                  
+
                  </div>
                </div>
  
@@ -141,6 +176,7 @@ function cargarPerfil(){
     mostrarSeguidores()
     cargarResdes()
     cargarMenuCuenta()
+   
 }
 
 function cargarMenuCuenta(){

@@ -26,7 +26,6 @@ function cargarBusquedaAmigos(data,materia){
          arregloId.push(amigos[i].usuario_id)
      }
      //LISTA DE INTEGRANTES DE LA MATERIA
-    const colorNotas=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-dark","l-bg-cyan","l-bg-green","l-bg-orange","l-bg-cyan2"]
   
     let body=""
  
@@ -145,7 +144,10 @@ async function fetchAddUserMateria(idMateria,idUsuario){
         materia:{
             id:idMateria
         },
-        usuario_id:idUsuario
+        usuario_id:{
+            id:idUsuario
+        },
+        
     }
     const result =await fetch('http://localhost:8088/user/materia',{
         method:'POST',

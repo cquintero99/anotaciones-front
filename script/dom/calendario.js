@@ -92,7 +92,7 @@ function homeCategoriaNotas(){
     cargarCategorias()
     .then(res=>res.json())
     .then(data=>{
-        console.log(data)
+        //console.log(data)
         let body=` <ul class="nav custom-tab" id="myTab" role="tablist" id="homeCategorias">
                       
                         
@@ -163,7 +163,7 @@ function verHomeNotas(data,filtro,bodyHtml){
       let diaHoy=Number(hoy.getUTCDate());
       let mesHoy=Number(hoy.getUTCMonth());
        if(fecha>hoy && filtro==="activas" || dia===diaHoy && mes===mesHoy ){
-        console.log("FECHA: DIA "+fecha+"  fecha:"+hoy)
+       // console.log("FECHA: DIA "+fecha+"  fecha:"+hoy)
         body+=`  <tr class="inner-box ">
         <th scope="row" class="${colorNotas[cargarColorNotas()]}">
             <div class="event-date fw-bold text-light ">

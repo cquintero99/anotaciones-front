@@ -19,7 +19,7 @@ function cargarModalMateria(){
 </nav>
 
 <div class="buttons ">
-<div class="container">
+<div class="container" onclick="limpiarModalMateria()">
 <a href="#" class="btnR effect04" data-sm-link-text="CLICK" target="_blank"
 data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="nombreBoton"><span>REGISTRAR MATERIA</span></a>
 </div>
@@ -114,5 +114,11 @@ data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="nombreBoton"><span>R
 </div>
 `
 document.getElementById("modal").innerHTML=body;
+limpiarModalMateria()
+}
 
+function limpiarModalMateria(){
+  document.getElementById("nombreMateria").value=""
+  document.getElementById("nombreMateriaProfesor").value=""
+  document.getElementById("codigo").value=""
 }

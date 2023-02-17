@@ -42,8 +42,7 @@ async function buscarMisSeguidores(id){
     
     function mostrarBusqueda(data){
         let body=""
-        const colorNotas=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-dark","l-bg-cyan","l-bg-green","l-bg-orange","l-bg-cyan2"]
-        let id=JSON.parse(localStorage.getItem("data")).id
+       let id=JSON.parse(localStorage.getItem("data")).id
         buscarMisSeguidores()
                 .then(res=>res.json())
                 .then(data2=>{
