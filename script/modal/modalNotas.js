@@ -1,4 +1,4 @@
-function cargarModalNota(rolMateria){
+function cargarModalNota(rolMateria,idMateria){
     const colorNotas=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-dark","l-bg-cyan","l-bg-green","l-bg-orange","l-bg-cyan2"]
      
       body=`
@@ -42,4 +42,5 @@ function cargarModalNota(rolMateria){
         </div>
       </div>`
       document.getElementById("modal").innerHTML=body;
+      verParticipantes(idMateria)
   }

@@ -267,9 +267,9 @@ const colorNotas=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-
     </div>
 </div>`
     document.getElementById("root").innerHTML=body;
-    cargarModalNota(rolMateria)
+    cargarModalNota(rolMateria,idMateria)
     
-    verParticipantes(idMateria)
+    
   }
 
   
