@@ -3,7 +3,8 @@ async function participantes(id){
     const resul=await fetch(urlBasic+"/materia/"+id+"/integrantes",{
         headers:{
 
-            "Authorization":"Bearer "+token
+            "Authorization":"Bearer "+token,
+            "Content-type":"Application/json"
         }
     })
     .then(res=>res.json())

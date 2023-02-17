@@ -148,7 +148,9 @@ async function postUsuarioMateria(idMateria){
         materia:{
             id:idMateria
         },
-        usuario_id:idUsuario
+        usuario_id:{
+          id:idUsuario
+        }
     }
     const result =await fetch(urlBasic+'/user/materia',{
         method:'POST',
