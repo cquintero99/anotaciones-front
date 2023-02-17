@@ -117,7 +117,6 @@ function actualizarInformacion(){
     })
     .then(response=>response.json())
     .then(data=>{
-      console.log(data)
       
       let datosUsuario=JSON.parse(localStorage.getItem("data"))
       datosUsuario.nombre=data.nombre

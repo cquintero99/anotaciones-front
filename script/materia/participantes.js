@@ -12,7 +12,7 @@ async function participantes(id){
 function verParticipantes(id){
     participantes(id)
     .then(res=>res.json())
-    .then(data=>{console.log(data)
+    .then(data=>{
         let body=``;
         let idUsuario=JSON.parse(localStorage.getItem("data")).id
         for (let i = 0; i < data.length; i++) {
