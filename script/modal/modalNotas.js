@@ -42,5 +42,5 @@ function cargarModalNota(rolMateria,idMateria){
         </div>
       </div>`
       document.getElementById("modal").innerHTML=body;
-      verParticipantes(idMateria)
+      participantes(idMateria)
   }

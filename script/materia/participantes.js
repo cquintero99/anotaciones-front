@@ -6,12 +6,6 @@ async function participantes(id){
             "Authorization":"Bearer "+token
         }
     })
-    return resul;
-}
-
-
-async function verParticipantes(id){
-    participantes(id)
     .then(res=>res.json())
     .then(data=>{
         let body=``;
@@ -46,6 +40,3 @@ async function verParticipantes(id){
     })
 }
 
-function participantesMateria(){
-    
-}
