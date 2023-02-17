@@ -35,7 +35,7 @@ function eliminarMateria(id){
 
 async function deleteMateria(id){
   let token=localStorage.getItem("token")
-  const resultDelete= await fetch('http://localhost:8088/materia/'+id,{
+  const resultDelete= await fetch(urlBasic+'/materia/'+id,{
     method:'DELETE',
     headers:{
       "Content-type":"Application/json",
@@ -77,7 +77,7 @@ function dejarMateria(id){
 }
 async function salirGrupoMateria(id){
   let token=localStorage.getItem("token")
-  await fetch('http://localhost:8088/user/materia/'+id,{
+  await fetch(urlBasic+'/user/materia/'+id,{
     method:'DELETE',
     headers:{
       "Content-type":"Application/json",

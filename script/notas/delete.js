@@ -37,7 +37,7 @@
 
   async function deleteNota(id,idMateria,rol){
     let token=localStorage.getItem("token")
-    const result=await fetch('http://localhost:8088/anotacion/'+id,{
+    const result=await fetch(urlBasic+'/anotacion/'+id,{
       method:'DELETE',
       
       headers:{

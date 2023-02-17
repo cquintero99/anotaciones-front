@@ -150,7 +150,7 @@ async function postUsuarioMateria(idMateria){
         },
         usuario_id:idUsuario
     }
-    const result =await fetch('http://localhost:8088/user/materia',{
+    const result =await fetch(urlBasic+'/user/materia',{
         method:'POST',
         body:JSON.stringify(userMateria),
         headers:{

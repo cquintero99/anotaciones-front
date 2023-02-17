@@ -88,7 +88,7 @@ function cargarBusquedaAmigos(data,materia){
 
 async function integrantesMateria(id){
     let token=localStorage.getItem("token")
-    const resultIntegrantes=await fetch('http://localhost:8088/materia/'+id+'/integrantes',{
+    const resultIntegrantes=await fetch(urlBasic+'/materia/'+id+'/integrantes',{
         headers:{
             "Authorization":"Bearer "+token,
             "Content-type":"Application/json"
@@ -149,7 +149,7 @@ async function fetchAddUserMateria(idMateria,idUsuario){
         },
         
     }
-    const result =await fetch('http://localhost:8088/user/materia',{
+    const result =await fetch(urlBasic+'/user/materia',{
         method:'POST',
         body:JSON.stringify(userMateria),
         headers:{
@@ -215,7 +215,7 @@ function deleteUserMateria(nombre,idMateria,idUsuario){
 }
 async function deleteCompañero(id){
     let token=localStorage.getItem("token")
-    const result= await fetch("http://localhost:8088/user/materia/"+id,{
+    const result= await fetch(urlBasic+"/user/materia/"+id,{
         method:'DELETE',
         headers:{
             "Authorization":"Bearer "+token,

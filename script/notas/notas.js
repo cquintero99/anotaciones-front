@@ -3,7 +3,7 @@ async function listaNotas(id,rolMateria) {
     resumenMateria(id)
     let token=localStorage.getItem("token")
     
-    const allNotas = await fetch("http://localhost:8088/materia/" + id + "/anotaciones",{
+    const allNotas = await fetch(urlBasic+"/materia/" + id + "/anotaciones",{
       headers:{
         'Authorization': 'Bearer ' + token
     }

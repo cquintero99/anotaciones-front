@@ -1,6 +1,6 @@
 async function findByIdMateria(id){
     let token=localStorage.getItem("token")
-    const result=await fetch("http://localhost:8088/materia/"+id,{
+    const result=await fetch(urlBasic+"/materia/"+id,{
         headers:{
             "Authorization":"Bearer "+token
         }

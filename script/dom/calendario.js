@@ -1,7 +1,7 @@
 async function allAnotaciones(){
     let id=JSON.parse(localStorage.getItem("data")).id
     let token=localStorage.getItem("token")
-    const result=await fetch('http://localhost:8088/usuarios/'+id+'/anotaciones',{
+    const result=await fetch(urlBasic+'/usuarios/'+id+'/anotaciones',{
         headers:{
             "Authorization":"Bearer "+token
         }

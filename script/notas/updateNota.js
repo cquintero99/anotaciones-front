@@ -1,7 +1,7 @@
 async function modalNota(id,rolMateria){
     //cargarCategorias()
     let token=localStorage.getItem("token")
-    const result=await fetch('http://localhost:8088/anotacion/'+id,{
+    const result=await fetch(urlBasic+'/anotacion/'+id,{
         headers:{
             "Authorization":"Bearer "+token
         }
@@ -28,6 +28,7 @@ async function cargarNotaModal(nota,rolMateria){
     
     document.getElementById("btnModalNota").innerHTML=body;
 }
+
 function cargarCategoriaNota(categoria){
   
   $("#selectCategorias option:contains("+categoria.nombre+")").attr('selected', true);
@@ -65,7 +66,7 @@ async function updateNota(id,rolMateria){
         estado
     }
     let token =localStorage.getItem("token")
-    const resulUpdateNota= await fetch("http://localhost:8088/anotacion/"+id,{
+    const resulUpdateNota= await fetch(urlBasic+"/anotacion/"+id,{
         method:'PUT',
         body:JSON.stringify(anotacion),
         headers:{

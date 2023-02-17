@@ -29,7 +29,7 @@ function newUser(){
 }
 
 async function saveUsuario(usuario){
-    const result=await fetch("http://localhost:8088/usuarios/save",{
+    const result=await fetch(urlBasic+"/usuarios/save",{
         method:'POST',
         body:JSON.stringify(usuario),
         headers:{

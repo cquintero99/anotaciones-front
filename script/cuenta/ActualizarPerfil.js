@@ -106,7 +106,7 @@ function actualizarInformacion(){
   async function updateDatosUsuario(usuario){
     let token=localStorage.getItem("token")
     let id=JSON.parse(localStorage.getItem("data")).id
-    const result =await fetch('http://localhost:8088/usuarios/'+id,{
+    const result =await fetch(urlBasic+'/usuarios/'+id,{
       method:'PUT',
       body:JSON.stringify(usuario),
       headers:{

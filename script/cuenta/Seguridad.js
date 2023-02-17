@@ -145,7 +145,7 @@ function verificoContraseña(auth,emailNuevo){
 async function updateCorreoUsuario(usuario){
     let id=JSON.parse(localStorage.getItem("data")).id
     let token=localStorage.getItem("token")
-    const result =await fetch("http://localhost:8088/usuarios/"+id+"/correo",{
+    const result =await fetch(urlBasic+"/usuarios/"+id+"/correo",{
         method:'PUT',
         body:JSON.stringify(usuario),
         headers:{
@@ -171,7 +171,7 @@ async function updateCorreoUsuario(usuario){
 }
 
 async function verificoEmail(email){
-    const result =await fetch("http://localhost:8088/usuarios/"+email+"/correo",)
+    const result =await fetch(urlBasic+"/usuarios/"+email+"/correo",)
     return result
 
 }

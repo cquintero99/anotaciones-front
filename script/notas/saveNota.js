@@ -52,7 +52,7 @@
 
     async function verfGuardarNota(anotacion,rolMateria){
         let token=localStorage.getItem("token")
-        const resultNota=await fetch('http://localhost:8088/anotacion',{
+        const resultNota=await fetch(urlBasic+'/anotacion',{
             method:'POST',
             body:JSON.stringify(anotacion),
             headers:{

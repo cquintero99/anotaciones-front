@@ -10,7 +10,7 @@ async function listaMateria() {
     localStorage.setItem("idMateria","")
     let token=localStorage.getItem("token")
     let id=JSON.parse(localStorage.getItem("data")).id
-  const result = await fetch("http://localhost:8088/usuarios/"+id+"/all",{
+  const result = await fetch(urlBasic+"/usuarios/"+id+"/all",{
     headers:{
       'Authorization': 'Bearer ' + token
   }

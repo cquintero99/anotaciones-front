@@ -1,7 +1,7 @@
 async function modalMateria(id){
 
     let token=localStorage.getItem("token")
-    const result= await fetch("http://localhost:8088/materia/"+id,{
+    const result= await fetch(urlBasic+"/materia/"+id,{
         headers:{
             "Authorization":"Bearer "+token
         }
@@ -50,7 +50,7 @@ async function updateMateria(id){
 
     let token=localStorage.getItem("token")
 
-    const resultUpdate=await fetch('http://localhost:8088/materia/'+id,{
+    const resultUpdate=await fetch(urlBasic+'/materia/'+id,{
         method:'PUT',
         body:JSON.stringify(newMateria),
         headers:{

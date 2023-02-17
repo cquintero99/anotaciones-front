@@ -17,7 +17,7 @@ function eliminarAmigo(id,nombre){
 
 async function deleteAmigoLista(id){
     let token=localStorage.getItem("token")
-    const result=await fetch('http://localhost:8088/seguidores/'+id,{
+    const result=await fetch(urlBasic+'/seguidores/'+id,{
         method:'DELETE',
         headers:{
             "Authorization":"Bearer "+token,

@@ -1,6 +1,6 @@
 async function cargarCategorias(){
     let token=localStorage.getItem("token")
-    const resultCategoria=await fetch('http://localhost:8088/categorias',{
+    const resultCategoria=await fetch(urlBasic+'/categorias',{
         headers:{
             "Authorization":"Bearer "+token
         }

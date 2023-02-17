@@ -1,6 +1,6 @@
 async function participantes(id){
     let token=localStorage.getItem("token")
-    const resul=await fetch("http://localhost:8088/materia/"+id+"/integrantes",{
+    const resul=await fetch(urlBasic+"/materia/"+id+"/integrantes",{
         headers:{
 
             "Authorization":"Bearer "+token

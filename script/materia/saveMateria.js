@@ -27,7 +27,7 @@
 
 async function registroMateria(materia){
     let token=localStorage.getItem("token")
-    const resultSave=await fetch("http://localhost:8088/materia",{
+    const resultSave=await fetch(urlBasic+"/materia",{
         method :'POST',
         body:JSON.stringify(materia),
         headers:{
@@ -52,7 +52,9 @@ async function agregoMateriaLista(materia,idUsuario){
 
     const usuarioMateria={
         materia,
-        usuario_id:idUsuario
+        usuario_id:{
+            id:idUsuario
+        }
     }
     let token=localStorage.getItem("token")
     const result=await fetch('http://localhost:8088/user/materia',{

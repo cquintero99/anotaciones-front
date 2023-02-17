@@ -1,7 +1,7 @@
 async function cargarSeguidores(){
     let token=localStorage.getItem("token")
     let idUser=JSON.parse(localStorage.getItem("data")).id
-    const result=await fetch("http://localhost:8088/usuarios/"+idUser+"/seguidores",{
+    const result=await fetch(urlBasic+"/usuarios/"+idUser+"/seguidores",{
         headers:{
             "Authorization":"Bearer "+token,
             "Content-type":"Application/json"

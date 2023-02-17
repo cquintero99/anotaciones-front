@@ -29,7 +29,7 @@ function buscarPorCorreo(){
 async function buscarMisSeguidores(id){
     let token=localStorage.getItem("token")
     let idUser=JSON.parse(localStorage.getItem("data")).id
-    const result=await fetch("http://localhost:8088/usuarios/"+idUser+"/sigo",{
+    const result=await fetch(urlBasic+"/usuarios/"+idUser+"/sigo",{
         headers:{
             "Authorization":"Bearer "+token,
             "Content-type":"Application/json"
@@ -156,7 +156,7 @@ async function buscarMisSeguidores(id){
 
         }
         let token=localStorage.getItem("token")
-        const result= await fetch("http://localhost:8088/seguidores",{
+        const result= await fetch(urlBasic+"/seguidores",{
             method:'POST',
             body:JSON.stringify(seguidor),
             headers:{
@@ -187,7 +187,7 @@ async function buscarMisSeguidores(id){
     
     async function allUsers(){
         let token=localStorage.getItem("token")
-        const result=await fetch('http://localhost:8088/usuarios/lista',{
+        const result=await fetch(urlBasic+'/usuarios/lista',{
             headers:{
                 "Authorization":"Bearer "+token,
                 "Content-type":"Application/json"

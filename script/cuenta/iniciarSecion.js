@@ -1,4 +1,7 @@
 
+const urlBasic="https://anotaciones-production.up.railway.app"
+//"http://localhost:8088";
+//"https://469e-179-1-110-82.ngrok.io"
  function iniciarSesion(){
     let email =document.getElementById("username").value
     let password=document.getElementById("password").value
@@ -26,7 +29,7 @@
 
 
 async function verificoExisteCuenta(auth,email){
-    const result =await fetch("http://localhost:8088/usuarios/"+email+"/correo",)
+    const result =await fetch(urlBasic+"/usuarios/"+email+"/correo")
     .then(res=>res.json())
     .then(data=>{
         
@@ -48,7 +51,7 @@ async function verificoExisteCuenta(auth,email){
 }
 
 async function envioDatoslogin(auth){
-    const result=await fetch('http://localhost:8088/login',{
+    const result=await fetch(urlBasic+'/login',{
         crossDomain:true,
         method: 'POST',
         body: JSON.stringify(auth),
