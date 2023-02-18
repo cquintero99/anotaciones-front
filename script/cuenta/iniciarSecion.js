@@ -1,6 +1,7 @@
 
-const urlBasic="http://localhost:8088";
-//"https://anotaciones-production.up.railway.app"
+const urlBasic="https://anotaciones-production.up.railway.app"
+//"http://localhost:8088";
+
 //"https://469e-179-1-110-82.ngrok.io"
  function iniciarSesion(){
     let email =document.getElementById("username").value
