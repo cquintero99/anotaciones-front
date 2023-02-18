@@ -1,10 +1,14 @@
 async function participantes(id){
+    
+    if(id!==undefined){
+    
     let token=localStorage.getItem("token")
     const resul=await fetch(urlBasic+"/materia/"+id+"/integrantes",{
         headers:{
 
             "Authorization":"Bearer "+token,
             "Content-type":"Application/json"
+            
         }
     })
     .then(res=>res.json())
@@ -39,5 +43,6 @@ async function participantes(id){
     .catch(err=>{
         console.log(err)
     })
+}
 }
 

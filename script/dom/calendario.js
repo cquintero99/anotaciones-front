@@ -73,7 +73,7 @@ function cargarCalendarioNotas(filtro){
                         
                     </div>
                     <div class="primary-btn text-center">
-                        <a href="#" class="btn text-dark fw-bold">CATEGORIAS</a>
+                        <a href="#" class="btn  fw-bold">MY NOTEBBOK</a>
                     </div>
                     <div id="homeCategorias">
                     </div>
@@ -85,7 +85,6 @@ function cargarCalendarioNotas(filtro){
     </div>`
     document.getElementById("root").innerHTML=body;
     cargarTodasNotas(filtro)
-    homeCategoriaNotas()
 }
 
 function homeCategoriaNotas(){

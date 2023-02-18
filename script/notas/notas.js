@@ -1,6 +1,8 @@
 async function listaNotas(id,rolMateria) {
     localStorage.setItem("idMateria",id)
     resumenMateria(id)
+     
+    
     let token=localStorage.getItem("token")
     
     const allNotas = await fetch(urlBasic+"/materia/" + id + "/anotaciones",{
@@ -10,7 +12,7 @@ async function listaNotas(id,rolMateria) {
     })
       .then((response) => response.json())
       .then((notas) => {cargarNotas(notas,rolMateria,id)
-        
+        participantes(id)
     })
       .catch((arr) => console.log(arr));
   }
@@ -268,9 +270,8 @@ const colorNotas=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-
 </div>`
     document.getElementById("root").innerHTML=body;
     cargarModalNota(rolMateria)
-    participantes(idMateria)
     
-    
+   
   }
 
   

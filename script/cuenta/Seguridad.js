@@ -186,12 +186,14 @@ let body=`
 </div>
 </div>
 <hr>
+<div id="alertContraseña"></div>
 <div class="row">
 <div class="col-sm-3">
   <h6 class="mb-0">Contraseña Actual </h6>
 </div>
+
 <div class="col-sm-9 text-secondary">
-<input type="text" class="form-control" placeholder="" id="EmailP" aria-label="nombreP" aria-describedby="basic-addon1">
+<input type="password" class="form-control" placeholder="" id="contraseñaActual" aria-label="nombreP" aria-describedby="basic-addon1">
 
 </div>
 </div>
@@ -201,7 +203,7 @@ let body=`
 <h6 class="mb-0">Contraseña nueva: </h6>
 </div>
 <div class="col-sm-9 text-secondary">
-<input type="text" class="form-control" placeholder="" id="contraseñaP" aria-label="apellidoP" aria-describedby="basic-addon1">
+<input type="password" class="form-control" placeholder="" id="contraseñaNueva1" aria-label="apellidoP" aria-describedby="basic-addon1">
 
 </div>
 </div>
@@ -212,7 +214,7 @@ let body=`
 <h6 class="mb-0">Repetir Contraseña:</h6>
 </div>
 <div class="col-sm-9 text-secondary">
-<input type="text" class="form-control" placeholder="" id="contraseñaP" aria-label="apellidoP" aria-describedby="basic-addon1">
+<input type="password" class="form-control" placeholder="" id="contraseñaNueva2" aria-label="apellidoP" aria-describedby="basic-addon1">
 
 </div>
 </div>
@@ -221,7 +223,7 @@ let body=`
 <div class="col">
 
 <div class="d-grid gap-2 col-6 mx-auto">
-<button class="btn btn-outline-primary" type="button">ACTUALIZAR</button>
+<button class="btn btn-outline-primary" type="button" onclick="verificoPassword()">ACTUALIZAR</button>
 </div>                       
 </div>
 </div>
@@ -230,5 +232,98 @@ let body=`
 document.getElementById("actualizarInformacion").innerHTML=body;
 document.getElementById("redes").innerHTML=""
 
+
+}
+
+function verificoPassword(){
+
+    let correo=JSON.parse(localStorage.getItem("data")).sub
+    let contraseñaActual=document.getElementById("contraseñaActual").value
+    let contraseñaNueva1=document.getElementById("contraseñaNueva1").value
+    let contraseñaNueva2=document.getElementById("contraseñaNueva2").value
+    let body=""
+
+    const auth ={
+        email:correo,
+        password:contraseñaActual
+    }
+    console.log(auth)
+
+//si no esta vacio
+if(contraseñaActual!=="" && contraseñaNueva1!=="" && contraseñaNueva2!==""){
+    //si son iguales las nuevas contraseñas
+if(contraseñaNueva1===contraseñaNueva2 ){
+                    envioDatoslogin(auth)
+                    .then(response=>response)
+                    .then(JWT=>{
+                    if (JWT.status === 200 && JWT.headers.has('Authorization')) {
+                        const usuario={
+                            contraseña:contraseñaNueva1
+                        }
+                        updatePassword(usuario)
+                        .then(response=>response.json())
+                        .then(data=>{
+                            body=`<div class="alert alert-success" role="alert">
+                        <a href="#" class="alert-link">CONTRASEÑA ACTUALIZADA</a>
+                        </div>`
+                        cargarPerfil()
+                        document.getElementById("alertUpdateUser").innerHTML=body;
+                        setTimeout(()=>{ document.getElementById("alertUpdateUser").innerHTML="";
+                        },4500)
+
+                        })
+                        .catch(err=>{
+                            console.log(err)
+                        })
+                        } else {
+                                body=`<div class="alert alert-danger" role="alert">
+                                <a href="#" class="alert-link">CONTRASEÑA INCORRECTA</a>
+                                    </div>`
+                                document.getElementById("alertContraseña").innerHTML=body;
+                                    setTimeout(()=>{ document.getElementById("alertContraseña").innerHTML="";
+                                        },4500)
+                            }
+                        })
+                        .catch(err=>{
+                            console.log(err)
+                        })
+       
+
+}else{
+            body=`<div class="alert alert-danger" role="alert">
+                    <a href="#" class="alert-link">LA CONTRASEÑAS SON DIFERENTES</a>
+                        </div>`
+                    document.getElementById("alertContraseña").innerHTML=body;
+                        setTimeout(()=>{ document.getElementById("alertContraseña").innerHTML="";
+                            },4500)            
+        }
+}else{
+            
+            document.getElementById("alertContraseña").innerHTML=`<div class="alert alert-warning" role="alert">
+            <a href="#" class="alert-link">CREDENCIALES INCOMPLETAS</a>
+        </div>`;
+                setTimeout(()=>{ document.getElementById("alertContraseña").innerHTML="";
+                            },4500)
+
+}
+
+
+}
+
+
+
+async function updatePassword(usuario){
+    let id=JSON.parse(localStorage.getItem("data")).id
+    let token=localStorage.getItem("token")
+    const result=await fetch(urlBasic+"/usuarios/"+id+"/password",{
+        method:'PUT',
+        body:JSON.stringify(usuario),
+        headers:{
+            "Authorization":"Bearer "+token,
+            "Content-type":"Application/json"
+            
+        }
+    })
+    return result;
 
 }
