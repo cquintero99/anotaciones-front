@@ -1,5 +1,5 @@
 async function participantes(id){
-    
+               
     if(id!==undefined){
     
     let token=localStorage.getItem("token")

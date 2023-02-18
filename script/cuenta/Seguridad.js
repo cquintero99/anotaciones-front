@@ -247,12 +247,12 @@ function verificoPassword(){
         email:correo,
         password:contraseñaActual
     }
-    console.log(auth)
 
 //si no esta vacio
 if(contraseñaActual!=="" && contraseñaNueva1!=="" && contraseñaNueva2!==""){
     //si son iguales las nuevas contraseñas
-if(contraseñaNueva1===contraseñaNueva2 ){
+if(contraseñaNueva1===contraseñaNueva2  ){
+if(contraseñaNueva1!==contraseñaActual){
                     envioDatoslogin(auth)
                     .then(response=>response)
                     .then(JWT=>{
@@ -288,7 +288,15 @@ if(contraseñaNueva1===contraseñaNueva2 ){
                             console.log(err)
                         })
        
+}else{
+    body=`<div class="alert alert-danger" role="alert">
+    <a href="#" class="alert-link">LA CONTRASEÑA NUEVA ES IGUAL A LA ANTERIOR</a>
+        </div>`
+    document.getElementById("alertContraseña").innerHTML=body;
+        setTimeout(()=>{ document.getElementById("alertContraseña").innerHTML="";
+            },4500)     
 
+}
 }else{
             body=`<div class="alert alert-danger" role="alert">
                     <a href="#" class="alert-link">LA CONTRASEÑAS SON DIFERENTES</a>
