@@ -73,7 +73,7 @@ function cargarCalendarioNotas(filtro){
                         
                     </div>
                     <div class="primary-btn text-center">
-                        <a href="#" class="btn  fw-bold">MY NOTEBBOK</a>
+                        <img src="./img/MY NOTEBOOKS (1).png"  width="400px" height="400px"  class="img-fluid"  alt="codigo QR MY NOTEBOOKS">
                     </div>
                     <div id="homeCategorias">
                     </div>

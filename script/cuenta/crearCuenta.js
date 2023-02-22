@@ -38,7 +38,6 @@ async function saveUsuario(usuario){
     })
     .then(response=>response.json())
     .then(newData=>{
-        console.log(newData)
         Swal.fire({
             icon: 'success',
             title: 'CORRECTO',

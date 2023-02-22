@@ -39,7 +39,8 @@ function cargarLogin(){
     </div>
 </div>
 <div class="container-fluid text-center footer">
- <a href="#">MY NOTEBOOK</a></p>
+<img src="./img/MY NOTEBOOKS (1).png"  width="400px" height="400px"  class="img-fluid"  alt="codigo QR MY NOTEBOOKS">
+                   
 </div>`
 document.getElementById("login").innerHTML=body;
 }
