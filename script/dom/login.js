@@ -59,25 +59,25 @@ function formularioRegistro(){
                       <div class="row">
                        <form control="" class="form-group" >
                         <div class="row">
-                            <input type="text" name="nombre" id="nombre" class="form__input " placeholder="Nombre">
+                            <input type="text" name="nombre" id="nombre" class="form__input " placeholder="Nombre" required>
                         </div>
                         <div class="row">
-                            <input type="text" name="apellido" id="apellido" class="form__input" placeholder="Apellido">
+                            <input type="text" name="apellido" id="apellido" class="form__input" placeholder="Apellido" required>
                         </div>
 
                         
                         <div class="row">
                         
                         <label for="remember_me">Fecha Nacimiento</label>
-                        <input type="date" name="fechaNacimiento" id="fechaNacimiento" class="form__input " >
+                        <input type="date" name="fechaNacimiento" id="fechaNacimiento" class="form__input " required >
                         </div>
                         <div class="row">
-                            <input type="text" name="correo" id="correo" class="form__input" placeholder="Correo">
+                            <input type="text" name="correo" id="correo" class="form__input" placeholder="Correo" required>
                         </div>
                         
                         <div class="row"
                             <span class="fa fa-lock"></span> 
-                            <input type="password" name="password" id="password" class="form__input" placeholder="Password">
+                            <input type="password" name="password" id="password" class="form__input" placeholder="Password" required>
                         </div>
                                 <div class="row form-floating">
                                 <select class="form-select" id="selectGenero" aria-label="Floating label select example">
@@ -93,8 +93,9 @@ function formularioRegistro(){
                             <input type="checkbox" name="remember_me" id="remember_me" class="">
                             <label for="remember_me">Acepto terminos y condiciones</label>
                         </div>
+                        <div class="row" id="alertLogin"></div>
                         <div class="row ">
-                            <input type="buttom" value="REGISTRAR" class="btnL btn-lg" onclick="newUser()">
+                            <input type="buttom" value="REGISTRAR" class="btnL btn" onclick="newUser()">
                             </div>
                             </form>
                             </div>
@@ -122,7 +123,7 @@ function formularioLogin(){
             <!-- <span class="fa fa-lock"></span> -->
             <input type="password" name="password" id="password" class="form__input" placeholder="Password" required>
         </div>
-        
+        <div class="row" id="alertLogin"></div>
         <div class="row text-center">
             <input type="buttom" value="Entrar" class="btnL" onclick="iniciarSesion()">
         </div>

@@ -25,7 +25,19 @@ function newUser(){
         genero
     }
     //console.log(user)
-  saveUsuario(user)
+
+    if(nombre!="" && apellido!="" && correo!="" && password!="" && fecha_nacimiento!=""){
+        saveUsuario(user)
+    }else{
+        body=`<div class="alert alert-warning" role="alert">
+        <a href="#" class="alert-link">CREDENCIALES INCOMPLETAS</a>
+     </div>`
+    document.getElementById("alertLogin").innerHTML=body;
+         setTimeout(()=>{ document.getElementById("alertLogin").innerHTML="";
+                    },4500)
+
+    }
+ 
 }
 
 async function saveUsuario(usuario){
@@ -44,13 +56,11 @@ async function saveUsuario(usuario){
             text: 'Cuenta creada con exito !',
             footer: '<a href="">Bienvenido</a>'
           })
-          setTimeout(()=>{
-            formularioLogin();
+          formularioLogin();
             document.getElementById("username").value=usuario.correo
             document.getElementById("password").value=usuario.contraseña
             iniciarSesion();
-
-          },2000)
+          
     })
     .catch(error=>{
         console.log(error)
