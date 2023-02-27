@@ -8,7 +8,7 @@ async function modalNota(id,rolMateria){
     })
     .then(res=>res.json())
     .then(data=>{cargarNotaModal(data,rolMateria)
-        cargarCategoriaNota(data.categoria)
+      // mostrarCategorias()
     })
     .catch(err=>console.log(err))
 
@@ -25,23 +25,50 @@ async function cargarNotaModal(nota,rolMateria){
 
     body=` <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
     <button type="button" class="btn btn-primary" onclick="updateNota(${nota.id},'${rolMateria}')" data-bs-dismiss="modal">Actualizar</button>`
-    
+   
+     cargarCategoriaNota(nota.categoria)
     document.getElementById("btnModalNota").innerHTML=body;
 }
 
+
+function cargarCategoriaNota(categoriaId){
+    cargarCategorias()
+    .then(response=>response.json())
+    .then(categoria=>{
+     let   body=``
+
+    for (let i = 0; i < categoria.length; i++) {
+        if(categoriaId.id===categoria[i].id){
+            body+=
+            ` <option value="${categoria[i].id}" selected>${categoria[i].nombre}</option>
+            `  
+        }else{
+        body+=
+        ` <option value="${categoria[i].id}" >${categoria[i].nombre}</option>
+        `}
+        
+    }
+    document.getElementById("selectCategorias").innerHTML=body;
+
+    })
+    .catch(error=>console.log(error))
+
+    
+}
+/*
 function cargarCategoriaNota(categoria){
-  
+    console.log(categoria)
+    //document.getElementById("selectCategorias").value =categoria.id
+  //  $("#selectCategorias").val(categoria.id);
+  let select= document.getElementById("selectCategorias")
+  select.value=categoria.nombre
   $("#selectCategorias option:contains("+categoria.nombre+")").attr('selected', true);
 
-  body+=
-        ` <option value=${categoria.id}>${categoria.nombre}</option>
-        `
-        document.getElementById("selectCategorias").innerHTML=body;
        
       
 
 }
-
+*/
 
 async function updateNota(id,rolMateria){
     let categoria=document.getElementById("selectCategorias")

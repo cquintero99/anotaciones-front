@@ -102,9 +102,14 @@ function formularioRegistro(){
                             <div class="row">
                                 <p>Ya tengo una cuenta! <a href="#" onclick="cargarLogin()">Iniciar Sesion</a></p>
                             </div>
+                            
     `
+
     document.getElementById("formulario").innerHTML=body
 }
+function onSubmit(token) {
+    document.getElementById("demo-form").submit();
+  }
 
 function formularioLogin(){
     body=`<div class="row p-3">

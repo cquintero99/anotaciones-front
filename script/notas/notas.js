@@ -95,15 +95,14 @@ const colorNotas=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-
            
                       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                       
-                      <button type="button" class="btn"  onclick="eliminarNota(${notas[i].id},${notas[i].materia_id},'${rolMateria}')" id="btnEliminarNota"> <i class="material-icons">delete
-                      </i></button>
+                      <button type="button" class="btn"  onclick="eliminarNota(${notas[i].id},${notas[i].materia_id},'${rolMateria}')" id="btnEliminarNota"> <i class="material-icons">delete</i></button>
                       </div>
                       <div class="card-header no-border">
-                      <h5 class="card-title"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+                      <p class="card-title fw-bold"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
                       <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
                       <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
                       <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
-                    </svg>${notas[i].categoria.nombre}</h5>
+                    </svg>${notas[i].categoria.nombre}</p>
                       </div>
                
                                   <div class="card-body pt-0">
@@ -123,28 +122,12 @@ const colorNotas=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-
                                           
                                             <ol class="widget-49-meeting-points">
                                                 <li class="widget-49-meeting-item "><span>DESCRIPCION:</span></li>
-                                                <textarea class="form-control fw-semibold " id="exampleFormControlTextarea1" rows="6">${notas[i].descripcion}
+                                                <textarea class="form-control fw-semibold " id="exampleFormControlTextarea1" rows="7">${notas[i].descripcion}
                                                 </textarea>
                                                 
                                                 
                                                 
-                                                <li class="widget-49-meeting-item"><span>ARCHIVOS</span></li>
-                                                <div class="mb-3">
-                                                <p class="text-center border border-light fw-semibold fs-6">PDF, JPG , EXEL , WORD </p>
-                                                <input class="form-control" type="file" id="formFile">
-                                                </div>
-                                                <table class="table  text-light table-borderless">
-                                                <thead><tr>
-                                                <th>ROL</th><th>ESTADO</th>
-                                                </tr></thead>
-                                                <tbody><tr>
-                                                <td>
-                                                <p class="text-center border border-light fw-semibold fs-6">${rol}</p></td>
-                                                <td><p class="text-center border border-light fw-semibold fs-6" onclick="cambiarEstado(${notas[i].id})">${notas[i].estado} </p>
-                                                </td>
-                                                </tr>
-                                                </tbody>
-                                                </table>
+                                                
                                             </ol>
                                             
                                             <div class="widget-49-meeting-action" id="btnEditarNota">
@@ -162,6 +145,25 @@ const colorNotas=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-
          </div>
          </div>
         `
+        /*
+        <li class="widget-49-meeting-item"><span>ARCHIVOS</span></li>
+                                                <div class="mb-3">
+                                                <p class="text-center border border-light fw-semibold fs-6">PDF, JPG , EXEL , WORD </p>
+                                                <input class="form-control" type="file" id="formFile">
+                                                </div>
+                                                <table class="table  text-light table-borderless">
+                                                <thead><tr>
+                                                <th>ROL</th><th>ESTADO</th>
+                                                </tr></thead>
+                                                <tbody><tr>
+                                                <td>
+                                                <p class="text-center border border-light fw-semibold fs-6">${rol}</p></td>
+                                                <td><p class="text-center border border-light fw-semibold fs-6" onclick="cambiarEstado(${notas[i].id})">${notas[i].estado} </p>
+                                                </td>
+                                                </tr>
+                                                </tbody>
+                                                </table>
+        */
       }else{
         rol="ESPECTADOR"
         body += `
@@ -170,17 +172,17 @@ const colorNotas=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-
         
            <div class="card  card-margin ${colorNotas[cargarColorNotas()]} "  style="max-width: 840px;" >
            
-                      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                       
-                      <button type="button" class="btn" aria-label="Close"  id="btnEliminarNota"><i class="material-icons">group</i></button>
-                      </div>
-                      <div class="card-header no-border">
-                      <h5 class="card-title"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
-                      <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-                      <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
-                      <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
-                    </svg>${notas[i].categoria.nombre}</h5>
-                      </div>
+           <button type="button" class="btn" aria-label="Close"  id="btnEliminarNota"><i class="material-icons">group</i></button>
+           </div>
+           <div class="card-header no-border">
+           <p class="card-title fw-bold"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+           <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+           <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+           <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+         </svg> ${notas[i].categoria.nombre} </p>
+           </div>
                
                               <div class="card-body pt-0">
                                   <div class="widget-49">
@@ -199,28 +201,12 @@ const colorNotas=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-
                                       
                                           <ol class="widget-49-meeting-points">
                                           <li class="widget-49-meeting-item "><span>DESCRIPCION:</span></li>
-                                          <textarea class="form-control fw-semibold " id="exampleFormControlTextarea1" rows="6">${notas[i].descripcion}
+                                          <textarea class="form-control fw-semibold " id="exampleFormControlTextarea1" rows="7">${notas[i].descripcion}
                                           </textarea>
                                           
                                           
                                           
-                                          <li class="widget-49-meeting-item"><span>ARCHIVOS</span></li>
-                                          <div class="mb-3">
-                                          <p class="text-center border border-light fw-semibold fs-6">PDF, JPG , EXEL , WORD </p>
-                                          <input class="form-control" type="file" id="formFile">
-                                          </div>
-                                          <table class="table  text-light table-borderless">
-                                          <thead><tr>
-                                          <th>ROL</th><th>ESTADO</th>
-                                          </tr></thead>
-                                          <tbody><tr>
-                                          <td>
-                                          <p class="text-center border border-light fw-semibold fs-6">${rol}</p></td>
-                                          <td><p class="text-center border border-light fw-semibold fs-6" onclick="cambiarEstado(${notas[i].id})">${notas[i].estado} </p>
-                                          </td>
-                                          </tr>
-                                          </tbody>
-                                          </table>
+                                         
                                       </ol>
                                         
                                         <div class="widget-49-meeting-action" id="btnEditarNota">
@@ -238,6 +224,25 @@ const colorNotas=["l-bg-cherry","l-bg-blue-dark","l-bg-green-dark","l-bg-orange-
          </div>
          </div>
         `
+        /*
+         <li class="widget-49-meeting-item"><span>ARCHIVOS</span></li>
+                                          <div class="mb-3">
+                                          <p class="text-center border border-light fw-semibold fs-6">PDF, JPG , EXEL , WORD </p>
+                                          <input class="form-control" type="file" id="formFile">
+                                          </div>
+                                          <table class="table  text-light table-borderless">
+                                          <thead><tr>
+                                          <th>ROL</th><th>ESTADO</th>
+                                          </tr></thead>
+                                          <tbody><tr>
+                                          <td>
+                                          <p class="text-center border border-light fw-semibold fs-6">${rol}</p></td>
+                                          <td><p class="text-center border border-light fw-semibold fs-6" onclick="cambiarEstado(${notas[i].id})">${notas[i].estado} </p>
+                                          </td>
+                                          </tr>
+                                          </tbody>
+                                          </table>
+        */
       }
      
     }

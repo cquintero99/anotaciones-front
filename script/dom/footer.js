@@ -52,6 +52,11 @@ function cargarFooter(id){
                 <i class="fas fa-gem me-3 text-secondary"></i>My Notebook's
               </h6>
               <p>
+              Este Proyecto se implementa una arquitectura a dos capas Backend y Frontend.
+                
+              </p>
+              <p>
+             
                 El sitio permite registrar Materias para guardar informacion detalla de algun evento o recordatorio importante
                 ,Tambien puedes agregar a tus amigos e invitarlos a tus materias.
               </p>
@@ -65,17 +70,18 @@ function cargarFooter(id){
                 Tecnologias Frontend
               </h6>
               <p>
-                <a href="#!" class="text-reset">Boopstrap</a>
+                <a href="#!" class="text-reset">HTML5</a>
               </p>
               <p>
                 <a href="#!" class="text-reset">JavaScript</a>
               </p>
               <p>
-                <a href="#!" class="text-reset">CSS</a>
+                <a href="#!" class="text-reset">Boopstrap</a>
               </p>
               <p>
-                <a href="#!" class="text-reset">HTML5</a>
+                <a href="#!" class="text-reset">CSS</a>
               </p>
+              
             </div>
             <!-- Grid column -->
     
@@ -86,6 +92,9 @@ function cargarFooter(id){
                 Tecnologias Backend
               </h6>
               <p>
+                <a href="#!" class="text-reset">JAVA</a>
+              </p>
+              <p>
                 <a href="#!" class="text-reset">Spring Boot</a>
               </p>
               <p>
@@ -94,9 +103,7 @@ function cargarFooter(id){
               <p>
                 <a href="#!" class="text-reset">MYSQL</a>
               </p>
-              <p>
-                <a href="#!" class="text-reset">Java</a>
-              </p>
+              
             </div>
             <!-- Grid column -->
     
@@ -104,13 +111,17 @@ function cargarFooter(id){
             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
               <!-- Links -->
               <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-              <p><i class="fas fa-home me-3 text-secondary"></i> New York, NY 10012, US</p>
+              <p><i class="fas fa-home me-3 text-secondary"></i> Cucuta, Norte de Santander, CO</p>
               <p>
                 <i class="fas fa-envelope me-3 text-secondary"></i>
-                info@example.com
+                ciroalfonsoqude@ufps.edu.co
+              </p>             
+              <p>
+                <i class="fas fa-envelope me-3 text-secondary"></i>
+                c99quintero@gmail.com
               </p>
-              <p><i class="fas fa-phone me-3 text-secondary"></i> + 01 234 567 88</p>
-              <p><i class="fas fa-print me-3 text-secondary"></i> + 01 234 567 89</p>
+              
+              <p><i class="fas fa-phone me-3 text-secondary"></i> +57 3157078528</p>
             </div>
             <!-- Grid column -->
           </div>

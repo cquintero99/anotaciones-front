@@ -17,7 +17,7 @@ function mostrarCategorias(){
 
     for (let i = 0; i < categoria.length; i++) {
         body+=
-        ` <option value=${categoria[i].id}>${categoria[i].nombre}</option>
+        ` <option value="${categoria[i].id}" >${categoria[i].nombre}</option>
         `
         
     }
