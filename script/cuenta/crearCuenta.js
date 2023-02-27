@@ -60,9 +60,31 @@ async function saveUsuario(usuario){
             document.getElementById("username").value=usuario.correo
             document.getElementById("password").value=usuario.contraseña
             iniciarSesion();
+            correoBienvenida(usuario.correo)
+            .then(response=>response)
+            .then(data=>{
+            })
+            .catch(err=>{
+                console.log("EMAIL NO ENVIADO")
+
+            } )
           
     })
     .catch(error=>{
         console.log(error)
+    })
+}
+
+async function correoBienvenida(email){
+    const usuario={
+       correo: email
+    }
+
+    const result=await fetch(urlBasic+"/send/nuevo",{
+        method:'POST',
+        body:JSON.stringify(usuario),
+        headers:{
+            "Content-type":"Application/json"
+        }
     })
 }
