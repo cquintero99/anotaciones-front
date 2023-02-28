@@ -308,10 +308,8 @@ async function sendCorreoCambio(correo){
     })
     .then(response=>response.json())
     .then(data=>{
-        console.log("CORREO CAMBIO")
     })
     .catch(err=>{
-        console.log("err"+err)
     })
 
 
