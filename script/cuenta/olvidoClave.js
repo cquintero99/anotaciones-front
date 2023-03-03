@@ -135,7 +135,7 @@ async function validoCodigo(){
          </div>`
         }
         let body=`<div class="alert alert-danger" role="alert">
-        <a href="#" class="alert-link">Codigo Incorrecto Intento: ${intento}</a>
+        <a href="#" class="alert-link">Codigo Incorrecto / Intento: ${intento}</a>
      </div>`
      document.getElementById("alertCambio").innerHTML=body;
     })
