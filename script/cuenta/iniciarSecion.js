@@ -53,14 +53,15 @@ async function verificoExisteCuenta(auth,email){
 
 async function envioDatoslogin(auth){
     const result=await fetch(urlBasic+'/login',{
-        crossDomain:true,
+        
         method: 'POST',
         body: JSON.stringify(auth),
         headers: {
-                  'Content-type':'application/json Access-Control-Request-Method',
+                  'Content-type':'application/json ',
                   'Access-Control-Allow-Headers':'Authorization',
-                  'Access-Control-Request-Method': 'POST'
-                  }
+                  'Cache-Control':'no-store'
+                  },
+                  cache:'no-store'
     })
     return result;
 }
