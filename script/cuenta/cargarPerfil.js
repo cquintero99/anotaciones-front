@@ -179,6 +179,46 @@ function cargarPerfil(){
    
 }
 
+
+ async function descargarReporteMaterias(){
+  document.getElementById("alertPDF").innerHTML=`<div class="alert alert-warning" role="alert">
+  <a href="#" class="alert-link">CARGANDO PDF...</a>
+</div>`
+
+  let id=JSON.parse(localStorage.getItem("data")).id
+  let token=localStorage.getItem("token")
+    const result=await fetch(urlBasic+"/usuarios/"+id+"/pdf",{
+      headers:{
+        "Authorization":"Bearer "+token
+      }
+    })
+    .then(res=>res.blob())
+    .then(blob=>{
+      console.log("descarga"+blob)
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'reporte.pdf';
+      document.body.appendChild(a);
+      a.click();
+      
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+    .finally(ar=>{
+      document.getElementById("alertPDF").innerHTML=`<div class="alert alert-success" role="alert">
+      <a href="#" class="alert-link">PDF GENERADO</a>
+    </div>`
+
+    setTimeout(()=>{
+      document.getElementById("alertPDF").innerHTML=""
+    },6000)
+    })
+    
+
+}
+
 function cargarMenuCuenta(){
   document.getElementById("menuCuenta").innerHTML=`<div class="row">
   
@@ -194,6 +234,8 @@ function cargarMenuCuenta(){
         </h2>
         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
           <div class="accordion-body">
+          <div id="alertPDF"></div>
+          <p class="btn fw-bold" onclick="descargarReporteMaterias()">Reporte materias PDF</p>
           <p class="btn fw-bold" onclick="actualizarInformacion()">Actualizar informacion</p>
           </div>
         </div>
