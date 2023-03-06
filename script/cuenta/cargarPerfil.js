@@ -187,7 +187,7 @@ function cargarPerfil(){
 
   let id=JSON.parse(localStorage.getItem("data")).id
   let token=localStorage.getItem("token")
-    const result=await fetch(urlBasic+"/usuarios/"+id+"/pdf",{
+    const result=await fetch(urlBasic+"/usuarios/pdf/"+id,{
       headers:{
         "Authorization":"Bearer "+token
       }
