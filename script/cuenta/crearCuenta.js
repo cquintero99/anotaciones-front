@@ -56,7 +56,7 @@ async function saveUsuario(usuario){
             text: 'Cuenta creada con exito !',
             footer: '<a href="">Bienvenido</a>'
           })
-          formularioLogin();
+            cargarLogin();
             document.getElementById("username").value=usuario.correo
             document.getElementById("password").value=usuario.contraseña
             iniciarSesion();
